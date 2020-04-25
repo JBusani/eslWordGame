@@ -19,23 +19,40 @@ class Input extends React.Component{
     onAddItem = (event) => {
         
         if(event.key === 'Enter'){
-            let value = this.state.value.split("");
+            let v = this.state.value.split("");
             let gameword = this.props.word.split("");
-            console.log(value);
-            console.log(gameword);
+            let booleanValidator = null;
 
-            if(value.length > gameword.length){
+            if(v.length > gameword.length){
                 console.log("The input has too many letters");
-              }
-            this.setState(state => {
-            const list = state.list.concat(state.value + " ");
+                return;
+              } else{
+                for(let x=0; x<v.length; x++){
+                    let letterMatch = gameword.includes(v[x]);
+                    console.log(letterMatch)
+                    if(letterMatch === false){
+                      const letter = v[x]
+                      console.log(letter + " is not a letter in the gameword");
+                      return booleanValidator = false;
+                     
+                    }else{
+                      console.log(v[x] + " is in the gameword");
+                    }
+                }
+                   
+            }
+            if (booleanValidator){
+                this.setState(state => {
+                    const list = state.list.concat(state.value + " ");
 
-            return {
-                list,
-                value: '',
-            };
-        });}
-    };
+                        return {
+                            list,
+                            value: ''};
+                    });
+            }    
+        }
+           
+    }
     
     reset(w){
       let list = this.state.list;
@@ -80,6 +97,7 @@ function validate(gamewords, input){
    
   }
  }
+
 }
 
 */

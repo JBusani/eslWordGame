@@ -7,43 +7,48 @@ class Input extends React.Component{
         this.state = { 
             value: '',
             list: [],
+
+            errors: {
+                name: false, //false means there are no errors
+
+
+            }
         };
         this.handleChange = this.handleChange.bind(this);
-        this.onAddItem = this.onAddItem.bind(this);
-        this.validate = this.validate.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.validateLength = this.validateLength.bind(this);
     }
 
-    validate(v,gw){
-        let value = v.toLowerCase().split("");
-        let gameword = gw.toLowerCase().split("");
-        if(value.length > gameword.length){
-            console.log("The input has too many letters");
+    validateLength(value, gameword){
+        //we are going to store errors for all parts
+        //in a single array
+        const lettersArray = value.toLowerCase().split("");
+        const gamewordArray = gameword.toLowerCase().split("");
+
+        const errors = [];
+
+        if (lettersArray.length > gamewordArray.length){
+            errors.push("Word has too many letters");
         }
-        }
-        
-}
+     
+        console.log(errors);
+    };
+
     handleChange(event){
         this.setState({value: event.target.value});
     }
-    onAddItem = (event) => {
-        let v = this.state.value;
-        let w = this.props.word;
-
+    onSubmit = (event) => {
         if(event.key === 'Enter'){
-            this.validate(v, w);
-            
+            this.validateLength(this.state.value, this.props.word);
+
             this.setState(state => {
                 const list = state.list.concat(state.value + " ");
-
                 return{
                     list,
                     value: '',
                 };
-            });}
-        }
-        
-        
-    }
+            });}   
+}
     
     reset(w){
       let list = this.state.list;
@@ -56,43 +61,6 @@ class Input extends React.Component{
         
       };
     
-    
-    /* 
-
-    PROBLEM: THis still doesn't account for if a letter is duplicated too many times. 
-    For exmaple, the "o" is considered true each time.
-
-var gamewords =  "school";
-var input = "coool";
-
-function validate(gamewords, input){
-  
-  var gameword = gamewords.split("");
-  var inputletters = input.split("");
-  var booleanValidator = null;
- 
- if(inputletters.length > gameword.length){
-   console.log("The input has too many letters");
- }else{   
-   for(var x=0; x<inputletters.length; x++){
-  var answer = gameword.includes(inputletters[x]);
-  console.log(answer)
-  if(answer === false){
-    var l = inputletters[x]
-    console.log(l + " is not a letter in the gameword");
-    return booleanValidator = false;
-   
-  }else{
-    console.log(inputletters[x] + " is in the gameword");
-  }
-   
-  }
- }
-
-}
-
-*/
-    
     render(){
         let AnswerList = this.state.list;
         return(
@@ -101,7 +69,7 @@ function validate(gamewords, input){
                     <label> Enter words <input 
                     value={this.state.value}
                     onChange={this.handleChange}
-                    onKeyPress={this.onAddItem}
+                    onKeyPress={this.onSubmit}
                     type="text" 
                     name="answer" 
                     /> </label>

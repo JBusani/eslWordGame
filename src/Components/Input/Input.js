@@ -8,18 +8,14 @@ class Input extends React.Component{
             value: '',
             list: [],
 
-            errors: {
-                name: false, //false means there are no errors
-
-
-            }
+            errors: []
         };
         this.handleChange = this.handleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.validateLength = this.validateLength.bind(this);
+        this.validate = this.validate.bind(this);
     }
 
-    validateLength(value, gameword){
+    validate(value, gameword){
         //we are going to store errors for all parts
         //in a single array
         const lettersArray = value.toLowerCase().split("");
@@ -27,20 +23,35 @@ class Input extends React.Component{
 
         const errors = [];
 
+        //check length
         if (lettersArray.length > gamewordArray.length){
             errors.push("Word has too many letters");
         }
-     
+
+        //letters are in the gameword
+        for (let x = 0; x < lettersArray.length; x++){
+            const letterValue = lettersArray[x];
+            if(!gamewordArray.includes(letterValue)){
+                errors.push(`${letterValue} is not acceptable`);
+            }
+        }
+        //check for multiple letter uses
+        
         console.log(errors);
+        return errors;
     };
 
     handleChange(event){
-        this.setState({value: event.target.value});
+        this.setState({value: event.target.value, errors: []});
     }
     onSubmit = (event) => {
         if(event.key === 'Enter'){
-            this.validateLength(this.state.value, this.props.word);
-
+            const errors = this.validate(this.state.value, this.props.word);
+            if (errors.length > 0){
+                this.setState({errors});
+                return;
+            }
+            
             this.setState(state => {
                 const list = state.list.concat(state.value + " ");
                 return{
@@ -62,6 +73,7 @@ class Input extends React.Component{
       };
     
     render(){
+        const {errors} = this.state;
         let AnswerList = this.state.list;
         return(
             <div>
@@ -75,8 +87,13 @@ class Input extends React.Component{
                     /> </label>
                 </div>
                 <div>
+                    {errors.map(error => (
+                        <p key={error}> Error: {error} </p>
+                    ))}
+                </div>
+                <div>
                     {this.reset(this.props.word)}
-                    {AnswerList.map(answer => <div> {answer} </div>)}
+                    {AnswerList.map(answer => <div key={answer}> {answer} </div>)}
                 </div>
             </div>
         )

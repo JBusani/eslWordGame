@@ -18,17 +18,7 @@ class Input extends React.Component{
         let gameword = gw.toLowerCase().split("");
         if(value.length > gameword.length){
             console.log("The input has too many letters");
-          }else{
-              for (let x = 0; x < value.length; x++){
-            const letterValue = value[x];
-            if(gameword.includes(letterValue)){
-                const index = gameword.indexOf(letterValue);
-                gameword.splice(index, 1); 
-            }else{
-                console.log('wrong letters or too many of the same letters')
-                break;
-        }}
-            
+        }
         }
         
 }
@@ -41,7 +31,7 @@ class Input extends React.Component{
 
         if(event.key === 'Enter'){
             this.validate(v, w);
-            if(this.validate){
+            
             this.setState(state => {
                 const list = state.list.concat(state.value + " ");
 

@@ -10,48 +10,49 @@ class Input extends React.Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.onAddItem = this.onAddItem.bind(this);
-
+        this.validate = this.validate.bind(this);
     }
 
+    validate(v,gw){
+        let value = v.toLowerCase().split("");
+        let gameword = gw.toLowerCase().split("");
+        if(value.length > gameword.length){
+            console.log("The input has too many letters");
+          }else{
+              for (let x = 0; x < value.length; x++){
+            const letterValue = value[x];
+            if(gameword.includes(letterValue)){
+                const index = gameword.indexOf(letterValue);
+                gameword.splice(index, 1); 
+            }else{
+                console.log('wrong letters or too many of the same letters')
+                break;
+        }}
+            
+        }
+        
+}
     handleChange(event){
         this.setState({value: event.target.value});
     }
     onAddItem = (event) => {
-        
+        let v = this.state.value;
+        let w = this.props.word;
+
         if(event.key === 'Enter'){
-            let v = this.state.value.split("");
-            let gameword = this.props.word.split("");
-            let booleanValidator = null;
+            this.validate(v, w);
+            if(this.validate){
+            this.setState(state => {
+                const list = state.list.concat(state.value + " ");
 
-            if(v.length > gameword.length){
-                console.log("The input has too many letters");
-                return;
-              } else{
-                for(let x=0; x<v.length; x++){
-                    let letterMatch = gameword.includes(v[x]);
-                    console.log(letterMatch)
-                    if(letterMatch === false){
-                      const letter = v[x]
-                      console.log(letter + " is not a letter in the gameword");
-                      return booleanValidator = false;
-                     
-                    }else{
-                      console.log(v[x] + " is in the gameword");
-                    }
-                }
-                   
-            }
-            if (booleanValidator){
-                this.setState(state => {
-                    const list = state.list.concat(state.value + " ");
-
-                        return {
-                            list,
-                            value: ''};
-                    });
-            }    
+                return{
+                    list,
+                    value: '',
+                };
+            });}
         }
-           
+        
+        
     }
     
     reset(w){

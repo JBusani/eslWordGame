@@ -1,11 +1,14 @@
 import React from 'react';
+import './Rules.sass';
+
+
 
 class Rules extends React.Component{
 
     render(){
         return (
 
-            <div>
+            <div className="ruleplay">
                 <div>
                     <h1> RULES: </h1>
                     <ol>

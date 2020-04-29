@@ -33,23 +33,21 @@ class Input extends React.Component{
             const letterValue = lettersArray[x];
             if(!gamewordArray.includes(letterValue)){
                 errors.push(`${letterValue} is not acceptable`);
+            } else{
+                let patt = new RegExp(`${lettersArray[x]}`, "g");
+                let gamewordLetterCount = gameword.match(patt).length;
+                let valueLetterCount = value.match(patt).length;
+
+                if (valueLetterCount > gamewordLetterCount){
+                    errors.push(`You have too many ${lettersArray[x]}`);
+                    break;
+                }
+
             }
         }
         
         //check for multiple letter uses
 
-        for(let x = 0; x < lettersArray.length; x++){
-            let patt = new RegExp(`${lettersArray[x]}`, "g");
-            let gamewordLetterCount = gameword.match(patt).length;
-            let valueLetterCount = value.match(patt).length;
-
-            if (valueLetterCount <= gamewordLetterCount){
-                continue;
-            } else {
-                console.log(`You have too many ${lettersArray[x]}`);
-                break;
-            }
-        }
         
 
 

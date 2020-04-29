@@ -11,9 +11,9 @@ class Gamewords extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            array: ["The Environment", "Electricity", "alternative energy", "fossil fuels", 
-            "solar panels", "skylights", "Eco Home", "Clean up", "garabage dump", "litter", "wildlife", "pollution",
-        "Planets", "Damage"],
+            array: ["Environment", "Electricity", "solar panels", "skylights", 
+            "memories", "litter", "wildlife", "pollution", "grownups", "plastic cups", "remembering",
+        "Planets", "Damage", "feather", "eighteen", "childhood", ],
             word: '',
         };
         this.handleClick = this.handleClick.bind(this);

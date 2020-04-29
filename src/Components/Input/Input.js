@@ -34,6 +34,8 @@ class Input extends React.Component{
             if(!gamewordArray.includes(letterValue)){
                 errors.push(`${letterValue} is not acceptable`);
             } else{
+
+                  //check for multiple letter uses
                 let patt = new RegExp(`${lettersArray[x]}`, "g");
                 let gamewordLetterCount = gameword.match(patt).length;
                 let valueLetterCount = value.match(patt).length;
@@ -45,12 +47,6 @@ class Input extends React.Component{
 
             }
         }
-        
-        //check for multiple letter uses
-
-        
-
-
 
         console.log(errors);
         return errors;

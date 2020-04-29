@@ -37,8 +37,8 @@ class Input extends React.Component{
 
                   //check for multiple letter uses
                 let patt = new RegExp(`${lettersArray[x]}`, "g");
-                let gamewordLetterCount = gameword.match(patt).length;
-                let valueLetterCount = value.match(patt).length;
+                let gamewordLetterCount = gameword.toLowerCase().match(patt).length;
+                let valueLetterCount = value.toLowerCase().match(patt).length;
 
                 if (valueLetterCount > gamewordLetterCount){
                     errors.push(`You have too many ${lettersArray[x]}`);

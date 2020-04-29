@@ -33,3 +33,5 @@ class Rules extends React.Component{
         )
     }
 }
+
+export default Rules;

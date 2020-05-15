@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Input.css';
 
 class Input extends React.Component{
     constructor(props){
@@ -23,12 +23,12 @@ class Input extends React.Component{
 
         const errors = [];
 
-        //check length
+        //check length of input is less than or equal to the gameword
         if (lettersArray.length > gamewordArray.length){
             errors.push("Word has too many letters");
         }
 
-        //letters are in the gameword
+        //check that input letters are in the gameword
         for (let x = 0; x < lettersArray.length; x++){
             const letterValue = lettersArray[x];
             if(!gamewordArray.includes(letterValue)){
@@ -56,7 +56,7 @@ class Input extends React.Component{
         this.setState({value: event.target.value, errors: []});
     }
     onSubmit = (event) => {
-        if(event.key === 'Enter'){
+        if(event.key === 'Enter' || event.target.value === "Submit"){
             const errors = this.validate(this.state.value, this.props.word);
             if (errors.length > 0){
                 this.setState({errors});
@@ -95,17 +95,17 @@ class Input extends React.Component{
                     onChange={this.handleChange}
                     onKeyPress={this.onSubmit}
                     type="text" 
-                    name="answer" 
-                    /> </label>
+                    name="answer" /> </label>
+                    <button id="myBtn" value="Submit" type="submit" onClick={this.onSubmit}> Enter </button>
                 </div>
                 <div>
                     {errors.map(error => (
                         <p key={error}> Error: {error} </p>
                     ))}
                 </div>
-                <div>
+                <div className="Answers">
                     {this.reset(this.props.word)}
-                    {AnswerList.map(answer => <div key={answer}> {answer} </div>)}
+                    {AnswerList.map(answer => <div className="answer" key={answer}> {answer} </div>)}
                 </div>
             </div>
         )

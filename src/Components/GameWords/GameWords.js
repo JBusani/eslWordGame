@@ -3,7 +3,7 @@ import './GameWords.sass';
 import StartButton from '../Buttons/Start';
 import ResetButton from '../Buttons/Reset';
 import Input from '../Input/Input';
-
+import data from '../data/data.json';
 
 
 class Gamewords extends React.Component{
@@ -11,9 +11,7 @@ class Gamewords extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            array: ["Environment", "Electricity", "solar panels", "skylights", 
-            "memories", "litter", "wildlife", "pollution", "grownups", "plastic cups", "remembering",
-        "Planets", "Damage", "feather", "eighteen", "childhood", ],
+            array: [],
             word: '',
         };
         this.handleClick = this.handleClick.bind(this);
@@ -21,7 +19,7 @@ class Gamewords extends React.Component{
     }
     
     handleClick(){
-        const array = this.state.array;
+        const array = data.words;
         const number = Math.floor(Math.random() * array.length);
 
         this.setState(state => ({

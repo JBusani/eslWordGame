@@ -14,11 +14,12 @@ class App extends React.Component{
      return(
          <div className="home">
              <div>
-                <h1>Find Words within the Words</h1>
+                <h1>Word Finder GAME</h1>
             </div>
-        <Rules />
         <Timer />
         <GameWords />
+        <Rules />
+
          </div>
      )
  }   

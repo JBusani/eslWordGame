@@ -19,7 +19,7 @@ class App extends React.Component{
         <Timer />
         <GameWords />
         <Rules />
-
+ 
          </div>
      )
  }   

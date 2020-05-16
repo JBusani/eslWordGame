@@ -14,7 +14,7 @@ class App extends React.Component{
      return(
          <div className="home">
              <div>
-                <h1>Word Finder GAME</h1>
+                <h1>Word Finder GAME let's do it</h1>
             </div>
         <Timer />
         <GameWords />

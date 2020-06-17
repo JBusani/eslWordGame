@@ -19,7 +19,7 @@ class Gamewords extends React.Component{
     }
     
     handleClick(){
-        const array = data.level["5"].chapters["4"].words;
+        const array = data.level["5"].chapters["2"].words;
         const number = Math.floor(Math.random() * array.length);
 
         this.setState(state => ({

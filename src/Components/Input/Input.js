@@ -28,7 +28,10 @@ class Input extends React.Component{
         if (lettersArray.length > gamewordArray.length){
             errors.push("Word has too many letters");
         }
-
+        //check there is an input
+        if (lettersArray.length === 0){
+            errors.push("You need to enter a word");
+        }        
         //check that input letters are in the gameword
         for (let x = 0; x < lettersArray.length; x++){
             const letterValue = lettersArray[x];
@@ -54,7 +57,7 @@ class Input extends React.Component{
     };
 
     handleChange(event){
-        this.setState({value: event.target.value, errors: []});
+        this.setState({value: event.target.value.toLowerCase(), errors: []});
     }
     onSubmit = (event) => {
         if(event.key === 'Enter' || event.target.value === "Submit"){
@@ -63,9 +66,8 @@ class Input extends React.Component{
                 this.setState({errors});
                 return;
             }
-            
             this.setState(state => {
-                const list = state.list.concat(state.value + " ");
+                const list = state.list.concat(state.value);
                 return{
                     list,
                     value: '',
@@ -79,9 +81,7 @@ class Input extends React.Component{
 
       while(list.length && word === ""){
           list.pop();
-
-        }
-        
+        } 
       };
     
     render(){
@@ -106,12 +106,11 @@ class Input extends React.Component{
                 </div>
                 <div className="Answers">
                     {this.reset(this.props.word)}
-                    {AnswerList.map(answer => <div className="answer" key={answer}> {answer} </div>)}
+                    {AnswerList.map(answer => <div className="answer" key={answer} >  {answer} </div>)}
                 </div>
                 <div>
                 <Score elements={AnswerList.length}/>
                 </div>
-                
             </div>
         )
     }

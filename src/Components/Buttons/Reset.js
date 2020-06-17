@@ -1,10 +1,11 @@
 import React from 'react';
+import './buttons.css';
 
 class ResetButton extends React.Component{
 
     render(){
         return(
-                <button onClick={this.props.onReset}> Reset </button> 
+                <button className="gamebutton" onClick={this.props.onReset}> Reset </button> 
         )
     }
 };

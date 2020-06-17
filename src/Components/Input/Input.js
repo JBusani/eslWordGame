@@ -1,5 +1,6 @@
 import React from 'react';
 import './Input.css';
+import Score from '../Scoreboard/score';
 
 class Input extends React.Component{
     constructor(props){
@@ -107,6 +108,10 @@ class Input extends React.Component{
                     {this.reset(this.props.word)}
                     {AnswerList.map(answer => <div className="answer" key={answer}> {answer} </div>)}
                 </div>
+                <div>
+                <Score elements={AnswerList.length}/>
+                </div>
+                
             </div>
         )
     }

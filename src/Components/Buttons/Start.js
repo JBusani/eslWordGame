@@ -1,11 +1,12 @@
 import React from 'react';
+import './buttons.css';
 
 class StartButton extends React.Component{
 
     render(){
 
         return(
-            <button onClick={this.props.onClick}> Start! </button>
+            <button className="gamebutton" onClick={this.props.onClick}> Start! </button>
         )
     }
 };

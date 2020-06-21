@@ -1,4 +1,4 @@
-var words = {
+const words = {
         "level": {
                 "1": {},
                 "2": {},

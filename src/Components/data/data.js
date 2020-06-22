@@ -1,13 +1,38 @@
 const words = {
         "level": {
-                "1": {},
-                "2": {},
-                "3": {},
-                "4": {},
+                "2": { 
+                       "Classroom": {
+                                "words": [
+                                        "teacher",
+                                        "classroom",
+                                        "tables & chairs",
+                                        "computers",
+                                        "board markers",
+                                        "pencil case",
+                                        "whiteboard",
+                                        "poster",
+                                        "picture",
+                                        "drawers",
+                                        "cabinet",
+                                        "CD player",
+                                        "television",
+                                        "erasers",
+                                        "pencils & pens",
+                                        "ruler"
+                                        ]
+                                },
+                        "Feelings": {
+                                "words": [
+                                        "hot , cold, sad",
+                                        "hungry & thirsty",
+                                        "happy , angry",
+                                        "scared , nervous",
+                                        "brave , tired"
+                                ]
+                        }
+                },
                 "5": {
-                "chapters": {
-                "1": {
-                        "theme": "Tools and Building",
+                "Tools and Building": {
                         "words": [
                                         "hammer",
                                         "roller", 
@@ -19,8 +44,7 @@ const words = {
                                         "tool box"
                                 ]
                         },
-                "2": {
-                        "theme": "Showtime and Theatre",
+                "Showtime and Theatre": {
                         "words": [
                                 "make-up",
                                 "curtain",
@@ -28,7 +52,7 @@ const words = {
                                 "character",
                                 "stage",
                                 "lighting",
-                                "audience",
+                                "audiences",
                                 "detective",
                                 "criminal",
                                 "performance",
@@ -40,8 +64,7 @@ const words = {
                                 "diamond"
                         ]
                 },
-                "3": {
-                        "theme": "Household Items",
+                "Household Items": {
                         "words": [
                               "sponge",
                               "feather duster",
@@ -52,9 +75,8 @@ const words = {
                               "garbage bag"
                         ]
                 },
-                "4": {
-                "theme": "Earth and Environment",
-                "words": [
+                "Earth and Environment": {
+                        "words": [
                                 "environment",
                                 "Electricity", 
                                 "solar panels", 
@@ -74,8 +96,7 @@ const words = {
                                 "scientists" 
                         ]
                 },
-                "5": {
-                "theme": "Reuse and Recycle",
+                "Reuse and Recycle": {
                 "words": [
                         "bottle",
                         "plastic bag",
@@ -93,26 +114,25 @@ const words = {
                         "newspapers"
                 ]
                 },
-                "9": {
-                "theme": "Sports",
-                "words": [
-                        "athlete",
-                        "coach",
-                        "player",
-                        "training",
-                        "arena",
-                        "trophy",
-                        "fan",
-                        "exercise",
-                        "captain",
-                        "breathe",
-                        "oxygen",
-                        "heart",
-                        "basketball"
-                        ]
+                "Sports": {
+                        "words": [
+                                "athlete",
+                                "coach",
+                                "player",
+                                "training",
+                                "arena",
+                                "trophy",
+                                "fan",
+                                "exercise",
+                                "captain",
+                                "breathe",
+                                "oxygen",
+                                "heart",
+                                "basketball"
+                                ]
+                        }
                 }
-        }       
+        }
 }
-        }}
 
-export default words;
+export default words.level;

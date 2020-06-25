@@ -5,21 +5,20 @@ const words = {
                                 "words": [
                                         "erasers",
                                         "pencils",
-                                        "pens & rulers",
+                                        "rulers",
                                         "textbook",
                                         "folders",
                                         "windows",
                                         "bookcase",
-                                        "bag & door"
                                 ]
                         },
                         "Playtime": {
                                 "words": [
-                                        "doll & ball",
+                                        "doll and ball",
                                         "teddy bear",
-                                        "puzzles & car",
-                                        "bike & kite & game",
-                                        "train & scooter",
+                                        "puzzles and car",
+                                        "a bike or a kite or a game",
+                                        "a train and a scooter",
                                 ]
                         },
                         "Body Parts": {
@@ -73,17 +72,19 @@ const words = {
                                         "CD player",
                                         "television",
                                         "erasers",
-                                        "pencils & pens",
+                                        "pencil case",
                                         "ruler"
                                         ]
                                 },
-                        "Feelings": {
+                        "Adjectives and Feelings": {
                                 "words": [
-                                        "hot , cold, sad",
-                                        "hungry , thirsty",
-                                        "happy , angry",
-                                        "scared , nervous",
-                                        "brave , tired"
+                                        "hungry",
+                                        "thirsty",
+                                        "furious",
+                                        "frightened",
+                                        "anxiousness",
+                                        "nervous",
+                                        "couragous"
                                 ]
                         }
                 },
@@ -92,12 +93,10 @@ const words = {
                         "words": [
                                         "hammer",
                                         "roller", 
-                                        "rope , nail", 
-                                        "tools , saw", 
                                         "practice",
-                                        "boards",
+                                        "wooden boards",
                                         "treehouse",
-                                        "tool box"
+                                        "toolboxes"
                                 ]
                         },
                 "Showtime and Theatre": {

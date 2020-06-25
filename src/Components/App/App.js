@@ -1,11 +1,17 @@
 import React from 'react';
-import './App.sass';
+import './App.css';
 import GameWords from '../GameWords/GameWords';
 import Timer from '../Timer/Timer';
 import Rules from '../Rules/Rules';
 import Data from '../data/data';
 
-
+//Issues:
+/*
+    the focus is lost once you press start
+    the reset only resets the game word. Not the array.
+    on load, with no level or theme selected, pressing start causes an error
+    levels should be different. Level 1 should have the bigger words
+*/
 
 class App extends React.Component{
    constructor(props){
@@ -39,7 +45,7 @@ class App extends React.Component{
    }
    componentDidMount(){
        this.setState({
-           levels: {...Data.level}
+         levels: {...Data.level},
        })
    };
  render(){
@@ -53,14 +59,15 @@ class App extends React.Component{
             </div>
         
         <select onChange={this.themeSelect}>
+            <option value="1"> Select Your Level </option>
             {Lvl.map((n)=>{
                return <option key={`lvl${n}`} value={n}> {`Level ${n}`} </option>
             })}
         </select>
         <div>
-            Choose a theme:
+            <p> Choose a theme. Then, Click Start. </p>
             {themes.map((t)=>{
-                return <button key={t} value={t} onClick={this.handleTheme}> {t} </button> 
+                return <button className="themes" key={t} value={t} onClick={this.handleTheme}> {t} </button> 
             })}
         </div>
         <GameWords levelNumber={this.state.levelNumber} theme={this.state.theme} />

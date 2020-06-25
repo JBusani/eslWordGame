@@ -1,0 +1,28 @@
+html{
+    height: 100%
+}
+body{
+    height: 100%
+}
+#root{
+    height: 100%
+}
+.home{
+    color: white;
+    background-color: purple;
+    margin: 0;
+    padding: 100px;
+    height: 100%;
+    text-align: center;
+}
+.themes{
+    font-size: 2rem;
+    width: auto;
+    padding: 10px;
+    margin: 5px;
+    border: solid 1px white;
+    height: 100px;
+}
+.themes:hover, .themes:focus{
+    background-color: gray;
+}

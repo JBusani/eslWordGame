@@ -22,12 +22,12 @@ class Gamewords extends React.Component{
         const t = this.props.theme;
         const lvls = this.props.levelNumber;
         const array = Data.level[lvls][t].words;
-        console.log(`Level ${lvls} with theme ${t} with the array ${array}`);
         const number = Math.floor(Math.random() * array.length);
-
+        
         this.setState(state => ({
             word: array[number]
         }));
+    
     }
 
     onReset(){

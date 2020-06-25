@@ -3,7 +3,7 @@ import './GameWords.sass';
 import StartButton from '../Buttons/Start';
 import ResetButton from '../Buttons/Reset';
 import Input from '../Input/Input';
-import data from '../data/data';
+import Data from '../data/data';
 
 
 class Gamewords extends React.Component{
@@ -19,23 +19,26 @@ class Gamewords extends React.Component{
     }
     
     handleClick(){
-        const array = data.level["5"].chapters["2"].words;
+        const t = this.props.theme;
+        const lvls = this.props.levelNumber;
+        const array = Data.level[lvls][t].words;
+        console.log(`Level ${lvls} with theme ${t} with the array ${array}`);
         const number = Math.floor(Math.random() * array.length);
 
         this.setState(state => ({
             word: array[number]
         }));
-        console.log(number);
     }
 
     onReset(){
-
         this.setState(state => ({
             word: '',
         }));
     };
 
     render(){
+      
+
         return(
             <div>
                 <div className="buttons">

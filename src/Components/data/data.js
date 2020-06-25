@@ -1,11 +1,67 @@
 const words = {
         "level": {
+                "1": {
+                        "Classroom": {
+                                "words": [
+                                        "erasers",
+                                        "pencils",
+                                        "pens & rulers",
+                                        "textbook",
+                                        "folders",
+                                        "windows",
+                                        "bookcase",
+                                        "bag & door"
+                                ]
+                        },
+                        "Playtime": {
+                                "words": [
+                                        "doll & ball",
+                                        "teddy bear",
+                                        "puzzles & car",
+                                        "bike & kite & game",
+                                        "train & scooter",
+                                ]
+                        },
+                        "Body Parts": {
+                                "words": [
+                                        "arms nose ears",
+                                        "face legs fingers",
+                                        "hands eyes",
+                                        "eyebrows",
+                                        "shoulders",
+                                ]
+                        },
+                        "People": {
+                                "words": [
+                                        "teacher",
+                                        "student & cook",
+                                        "firefighter",
+                                        "doctor",
+                                        "police officer",
+                                        "farmer & pilot",
+                                        "mailman",
+                                        "zookeeper"
+                                ]
+                        },
+                        "Park": {
+                                "words": [
+                                        "seesaw & goal",
+                                        "slide & swing",
+                                        "tree & pool",
+                                        "armbands",
+                                        "ice cream",
+                                        "frisbee disc",
+                                        "jungle gym"
+                                ]
+                        }
+
+                },
                 "2": { 
                        "Classroom": {
                                 "words": [
                                         "teacher",
                                         "classroom",
-                                        "tables & chairs",
+                                        "tables chairs",
                                         "computers",
                                         "board markers",
                                         "pencil case",
@@ -24,7 +80,7 @@ const words = {
                         "Feelings": {
                                 "words": [
                                         "hot , cold, sad",
-                                        "hungry & thirsty",
+                                        "hungry , thirsty",
                                         "happy , angry",
                                         "scared , nervous",
                                         "brave , tired"
@@ -36,11 +92,11 @@ const words = {
                         "words": [
                                         "hammer",
                                         "roller", 
-                                        "rope & nail", 
-                                        "tools & saw", 
+                                        "rope , nail", 
+                                        "tools , saw", 
                                         "practice",
                                         "boards",
-                                        "tree house",
+                                        "treehouse",
                                         "tool box"
                                 ]
                         },
@@ -103,7 +159,7 @@ const words = {
                         "recycling center",
                         "battery",
                         "chemicals",
-                        "oil & metal",
+                        "oil and metal",
                         "recycle",
                         "reuse & return",
                         "juice cartons",
@@ -120,14 +176,11 @@ const words = {
                                 "coach",
                                 "player",
                                 "training",
-                                "arena",
                                 "trophy",
-                                "fan",
-                                "exercise",
+                                "fans in the arena",
+                                "exercise your heart",
                                 "captain",
-                                "breathe",
-                                "oxygen",
-                                "heart",
+                                "breathe oxygen",
                                 "basketball"
                                 ]
                         }
@@ -135,4 +188,4 @@ const words = {
         }
 }
 
-export default words.level;
+export default words;

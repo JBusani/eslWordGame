@@ -3,62 +3,67 @@ import './App.sass';
 import GameWords from '../GameWords/GameWords';
 import Timer from '../Timer/Timer';
 import Rules from '../Rules/Rules';
-import Levels from '../data/data';
+import Data from '../data/data';
 
-//SHOULD MAYBE CHANGE OPTIONS TO <optgroup label="(theme)"> <option ...> instead of having multiple select fields
-//LEVEL 1
-//   THEME
-//   THEME
-//LEVEL 2
-//   THEME
-//   THEME
+
 
 class App extends React.Component{
    constructor(props){
        super(props);
        this.state = {
-           levels: {},
-           chapter: {}
+           levels: Data.level,
+           levelNumber: {},
+           themes: {},
+           theme: {}
        }
-       this.chapterSelect = this.chapterSelect.bind(this);
+       this.themeSelect = this.themeSelect.bind(this);
+       this.handleTheme = this.handleTheme.bind(this);
    }
 
-   chapterSelect(event){
+   themeSelect(event){
        const levelNumber = event.target.value;
-       const chpt = this.state.levels[levelNumber];
+       const themes = this.state.levels[levelNumber];
 
          this.setState({
-            chapter: chpt
+            levelNumber: levelNumber,
+            themes: themes
         })
    }
 
+   handleTheme(event){
+       const theme = event.target.value;
+        console.log(theme);
+       this.setState({
+           theme: theme
+       })
+   }
    componentDidMount(){
        this.setState({
-           levels: {...Levels}
+           levels: {...Data.level}
        })
    };
  render(){
     const Lvl = Object.keys(this.state.levels);
-    const themes = Object.keys(this.state.chapter);
+    const themes = Object.keys(this.state.themes);
 
-    console.log(this.state.chapter);
      return(
          <div className="home">
              <div>
                 <h1>Word Game</h1>
             </div>
         
-        <select onChange={this.chapterSelect}>
+        <select onChange={this.themeSelect}>
             {Lvl.map((n)=>{
                return <option key={`lvl${n}`} value={n}> {`Level ${n}`} </option>
             })}
         </select>
         <div>
+            Choose a theme:
             {themes.map((t)=>{
-                return <h2 key={t}>{t}</h2>
+                return <button key={t} value={t} onClick={this.handleTheme}> {t} </button> 
             })}
         </div>
-        <GameWords />
+        <GameWords levelNumber={this.state.levelNumber} theme={this.state.theme} />
         
         <Timer />
         <Rules />

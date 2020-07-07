@@ -1,5 +1,5 @@
 import React from "react";
-import './GameWords.sass';
+import './GameWords.scss';
 import StartButton from '../Buttons/Start';
 import ResetButton from '../Buttons/Reset';
 import Input from '../Input/Input';
@@ -11,7 +11,6 @@ class Gamewords extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            array: [],
             word: '',
         };
         this.handleClick = this.handleClick.bind(this);
@@ -20,8 +19,7 @@ class Gamewords extends React.Component{
     
     handleClick(){
         const t = this.props.theme;
-        const lvls = this.props.levelNumber;
-        const array = Data.level[lvls][t].words;
+        const array = Data.themes[t].words;
         const number = Math.floor(Math.random() * array.length);
         
         this.setState(state => ({

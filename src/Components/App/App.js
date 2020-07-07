@@ -17,40 +17,29 @@ class App extends React.Component{
    constructor(props){
        super(props);
        this.state = {
-           levels: Data.level,
-           levelNumber: {},
-           themes: {},
-           theme: {}
+           themes: Data.themes,
+           theme: ""
        }
        this.themeSelect = this.themeSelect.bind(this);
-       this.handleTheme = this.handleTheme.bind(this);
    }
 
    themeSelect(event){
-       const levelNumber = event.target.value;
-       const themes = this.state.levels[levelNumber];
-
-         this.setState({
-            levelNumber: levelNumber,
-            themes: themes
-        })
-   }
-
-   handleTheme(event){
        const theme = event.target.value;
-        console.log(theme);
-       this.setState({
-           theme: theme
-       })
+        if(theme === ""){
+            return;
+        }else{
+         this.setState({
+            theme: theme
+        })}
    }
+
    componentDidMount(){
        this.setState({
-         levels: {...Data.level},
+         themes: {...Data.themes},
        })
    };
  render(){
-    const Lvl = Object.keys(this.state.levels);
-    const themes = Object.keys(this.state.themes);
+    const Lvl = Object.keys(this.state.themes);
 
      return(
          <div className="home">
@@ -59,18 +48,15 @@ class App extends React.Component{
             </div>
         
         <select onChange={this.themeSelect}>
-            <option value="1"> Select Your Level </option>
+            <option value=""> Select Your Theme </option>
             {Lvl.map((n)=>{
-               return <option key={`lvl${n}`} value={n}> {`Level ${n}`} </option>
+               return <option key={`${n}`} value={n}> {`${n}`} </option>
             })}
+            {console.log(this.state.theme)}
         </select>
-        <div>
             <p> Choose a theme. Then, Click Start. </p>
-            {themes.map((t)=>{
-                return <button className="themes" key={t} value={t} onClick={this.handleTheme}> {t} </button> 
-            })}
-        </div>
-        <GameWords levelNumber={this.state.levelNumber} theme={this.state.theme} />
+
+        <GameWords theme={this.state.theme} />
         
         <Timer />
         <Rules />

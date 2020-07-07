@@ -1,8 +1,7 @@
 const words = {
-        "level": {
-                "1": {
-                        "Classroom": {
-                                "words": [
+        "themes": {
+                "Classroom": {
+                        "words": [
                                         "erasers",
                                         "pencils",
                                         "rulers",
@@ -10,102 +9,26 @@ const words = {
                                         "folders",
                                         "windows",
                                         "bookcase",
-                                ]
-                        },
-                        "Playtime": {
-                                "words": [
-                                        "doll and ball",
-                                        "teddy bear",
-                                        "puzzles and car",
-                                        "a bike or a kite or a game",
-                                        "a train and a scooter",
-                                ]
-                        },
-                        "Body Parts": {
-                                "words": [
-                                        "arms nose ears",
-                                        "face legs fingers",
-                                        "hands eyes",
-                                        "eyebrows",
-                                        "shoulders",
-                                ]
-                        },
-                        "People": {
-                                "words": [
-                                        "teacher",
-                                        "student & cook",
-                                        "firefighter",
-                                        "doctor",
-                                        "police officer",
-                                        "farmer & pilot",
-                                        "mailman",
-                                        "zookeeper"
-                                ]
-                        },
-                        "Park": {
-                                "words": [
-                                        "seesaw & goal",
-                                        "slide & swing",
-                                        "tree & pool",
-                                        "armbands",
-                                        "ice cream",
-                                        "frisbee disc",
-                                        "jungle gym"
-                                ]
-                        }
-
-                },
-                "2": { 
-                       "Classroom": {
-                                "words": [
-                                        "teacher",
+                                        "teachers",
                                         "classroom",
-                                        "tables chairs",
                                         "computers",
-                                        "board markers",
+                                        "board marker",
                                         "pencil case",
+                                        "bookcase",
                                         "whiteboard",
-                                        "poster",
-                                        "picture",
-                                        "drawers",
-                                        "cabinet",
-                                        "CD player",
-                                        "television",
-                                        "erasers",
-                                        "pencil case",
-                                        "ruler"
-                                        ]
-                                },
-                        "Adjectives and Feelings": {
-                                "words": [
-                                        "hungry",
-                                        "thirsty",
-                                        "furious",
-                                        "frightened",
-                                        "anxiousness",
-                                        "nervous",
-                                        "couragous"
-                                ]
-                        }
-                },
-                "5": {
+                                        "television"],
+                        },
                 "Tools and Building": {
                         "words": [
-                                        "hammer",
-                                        "roller", 
-                                        "practice",
-                                        "wooden boards",
                                         "treehouse",
                                         "toolboxes"
                                 ]
                         },
                 "Showtime and Theatre": {
                         "words": [
-                                "make-up",
                                 "curtain",
                                 "costume",
                                 "character",
-                                "stage",
                                 "lighting",
                                 "audiences",
                                 "detective",
@@ -125,8 +48,7 @@ const words = {
                               "feather duster",
                               "lampshade",
                               "rubber gloves",
-                              "clothes line",
-                              "broom and cloth",
+                              "clothesline",
                               "garbage bag"
                         ]
                 },
@@ -152,38 +74,22 @@ const words = {
                         ]
                 },
                 "Reuse and Recycle": {
-                "words": [
-                        "bottle",
-                        "plastic bag",
-                        "recycling center",
-                        "battery",
-                        "chemicals",
-                        "oil and metal",
-                        "recycle",
-                        "reuse & return",
-                        "juice cartons",
-                        "car tires",
-                        "bracelets",
-                        "greeting cards",
-                        "wrapping paper",
-                        "newspapers"
-                ]
-                },
-                "Sports": {
                         "words": [
-                                "athlete",
-                                "coach",
-                                "player",
-                                "training",
-                                "trophy",
-                                "fans in the arena",
-                                "exercise your heart",
-                                "captain",
-                                "breathe oxygen",
-                                "basketball"
+                                "bottle",
+                                "plastic bag",
+                                "recycling center",
+                                "materials",
+                                "battery",
+                                "chemicals",
+                                "recycle",
+                                "reuse & return",
+                                "juice cartons",
+                                "bracelets",
+                                "greeting cards",
+                                "wrapping paper",
+                                "newspapers"
                                 ]
-                        }
-                }
+                        },
         }
 }
 

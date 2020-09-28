@@ -16,16 +16,20 @@ class Gamewords extends React.Component{
         this.handleClick = this.handleClick.bind(this);
         this.onReset = this.onReset.bind(this);
     }
-    
+        
     handleClick(){
-        const t = this.props.theme;
-        const array = Data.themes[t].words;
+        let t = this.props.theme;
+        if(t === "Select Your Theme"){
+            return;
+        }
+        let array = Data.themes[t].words;
         const number = Math.floor(Math.random() * array.length);
         
         this.setState(state => ({
             word: array[number]
-        }));
-    
+        }))
+        
+        console.log(this.props.theme);
     }
 
     onReset(){
@@ -35,7 +39,6 @@ class Gamewords extends React.Component{
     };
 
     render(){
-      
 
         return(
             <div>

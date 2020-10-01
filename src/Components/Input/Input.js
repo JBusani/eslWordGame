@@ -1,6 +1,7 @@
 import React from 'react';
 import './Input.css';
 import Score from '../Scoreboard/score';
+import validate from '../../methods/validate';
 
 class Input extends React.Component{
     constructor(props){
@@ -13,55 +14,14 @@ class Input extends React.Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.validate = this.validate.bind(this);
     }
-
-    validate(value, gameword){
-        //we are going to store errors for all parts
-        //in a single array
-        const lettersArray = value.toLowerCase().split("");
-        const gamewordArray = gameword.toLowerCase().split("");
-
-        const errors = [];
-
-        //check length of input is less than or equal to the gameword
-        if (lettersArray.length > gamewordArray.length){
-            errors.push("Word has too many letters");
-        }
-        //check there is an input
-        if (lettersArray.length === 0){
-            errors.push("You need to enter a word");
-        }        
-        //check that input letters are in the gameword
-        for (let x = 0; x < lettersArray.length; x++){
-            const letterValue = lettersArray[x];
-            if(!gamewordArray.includes(letterValue)){
-                errors.push(`${letterValue} is not acceptable`);
-            } else{
-
-                  //check for multiple letter uses
-                let patt = new RegExp(`${lettersArray[x]}`, "g");
-                let gamewordLetterCount = gameword.toLowerCase().match(patt).length;
-                let valueLetterCount = value.toLowerCase().match(patt).length;
-
-                if (valueLetterCount > gamewordLetterCount){
-                    errors.push(`You have too many ${lettersArray[x]}`);
-                    break;
-                }
-
-            }
-        }
-
-        console.log(errors);
-        return errors;
-    };
 
     handleChange(event){
         this.setState({value: event.target.value.toLowerCase(), errors: []});
     }
     onSubmit = (event) => {
         if(event.key === 'Enter' || event.target.value === "Submit"){
-            const errors = this.validate(this.state.value, this.props.word);
+            const errors = validate(this.state.value, this.props.word);
             if (errors.length > 0){
                 this.setState({errors});
                 return;

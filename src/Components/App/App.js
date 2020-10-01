@@ -1,62 +1,100 @@
 import React from 'react';
-import './App.css';
-import GameWords from '../GameWords/GameWords';
+import '../Layout/Layout.css'
+import Layout from '../Layout/Layout';
+import GameWord from '../GameWord/GameWord';
 import Timer from '../Timer/Timer';
 import Rules from '../Rules/Rules';
 import Data from '../data/data';
+import StartButton from '../Buttons/Start';
+import ResetButton from '../Buttons/Reset';
 
-//Issues:
-/*
-
-*/
 
 class App extends React.Component{
    constructor(props){
        super(props);
        this.state = {
            themes: Data.themes,
-           theme: ""
+           theme: "",
+           gameword: "",
+           errors: "",
        }
        this.themeSelect = this.themeSelect.bind(this);
-   }
-
+       this.gamewordSelect = this.gamewordSelect.bind(this);
+       this.onReset= this.onReset.bind(this);
+    }
+    componentDidMount(){
+        this.setState({
+            themes: {...Data.themes},
+            theme: "Classroom",
+            gameword: ""
+        })
+    };
    themeSelect(event){
     let theme = event.target.value;    
-    this.setState({
-            theme: theme
-        });
-   }
 
-   componentDidMount(){
-       this.setState({
-         themes: {...Data.themes},
-         theme: "Select Your Theme"
-       })
+    this.setState(state => ({
+            theme: theme,
+            errors: "",
+        }));
+        console.log(`Your previous theme was ${this.state.theme}`)
    };
+   gamewordSelect(){
+    let theme = this.state.theme;
+
+    if(this.state.errors === "Please select a new theme"){
+        console.log(this.state);
+        return;
+    };
+   
+    let array = this.state.themes[theme].words;
+    const number = Math.floor(Math.random() * array.length);
+
+    this.setState(state => ({
+        gameword: array[number]
+    }));
+   }
+   onReset(){
+    this.setState(state => ({
+        themes: Data.themes,
+        theme: "",
+        gameword: '',
+        errors: "Please select a new theme"
+    }));
+    function set(){
+        document.getElementById("default").selected = "true";
+    };
+    set();
+    console.log(this.state)
+};
+
  render(){
-    const Lvl = Object.keys(this.state.themes);
-
+    const Themes = Object.keys(this.state.themes);
      return(
-         <div className="home">
-             <div>
-                <h1>Word Game</h1>
-            </div>
-        {console.log(this.state.theme)}
-        <select onChange={this.themeSelect}>
-            <option value="Select Your Theme" onChange={this.themeSelect}> Select Your Theme </option>
-            {Lvl.map((n)=>{
-               return <option key={`${n}`} value={n}> {`${n}`} </option>
-            })}
-        </select>
+         <Layout>
             <p> Choose a theme. Then, Click Start. </p>
+            <select id="themeDropdown" onChange={this.themeSelect}>
+                <option id="default" selected value="Classroom" onChange={this.themeSelect}> Select Your Theme </option>
+                {Themes.map((n)=>{
+                    return <option key={`${n}`} value={n}> {`${n}`} </option>
+                })}
+            </select>
+            <div>
+                {this.state.errors}
+            </div>
+            <div>
+                <StartButton onClick={this.gamewordSelect}></StartButton>
+                <ResetButton onReset={this.onReset} /> 
+            </div>
+            
+            <GameWord gameword={this.state.gameword} />
 
-        <GameWords theme={this.state.theme} />
-        <Timer />
-        <Rules />
- 
-         </div>
+            
+            {/*<Timer />
+            <Rules />*/}
+         </Layout>
      )
- }   
-}
+    }   
+};
 
 export default App;
+

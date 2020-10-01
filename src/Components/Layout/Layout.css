@@ -7,9 +7,6 @@ body{
 #root{
     height: 100%
 }
-.buttonContainer{
-    background-color: green;
-}
 .home{
     color: white;
     background-color: purple;

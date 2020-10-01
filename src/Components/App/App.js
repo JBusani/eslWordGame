@@ -7,6 +7,7 @@ import Rules from '../Rules/Rules';
 import Data from '../data/data';
 import StartButton from '../Buttons/Start';
 import ResetButton from '../Buttons/Reset';
+import Input from '../Input/Input';
 
 
 class App extends React.Component{
@@ -25,7 +26,7 @@ class App extends React.Component{
     componentDidMount(){
         this.setState({
             themes: {...Data.themes},
-            theme: "Classroom",
+            theme: "",
             gameword: ""
         })
     };
@@ -41,7 +42,7 @@ class App extends React.Component{
    gamewordSelect(){
     let theme = this.state.theme;
 
-    if(this.state.errors === "Please select a new theme"){
+    if(this.state.errors === "Please select a new theme" || this.state.theme === ""){
         console.log(this.state);
         return;
     };
@@ -72,12 +73,14 @@ class App extends React.Component{
      return(
          <Layout>
             <p> Choose a theme. Then, Click Start. </p>
-            <select id="themeDropdown" onChange={this.themeSelect}>
-                <option id="default" selected value="Classroom" onChange={this.themeSelect}> Select Your Theme </option>
-                {Themes.map((n)=>{
-                    return <option key={`${n}`} value={n}> {`${n}`} </option>
-                })}
-            </select>
+            <div className="dropdown">
+                    <select id="themeDropdown" defaultValue="Select a Theme" onChange={this.themeSelect}>
+                    <option id="default" value="Select a Theme" onChange={this.themeSelect}> Select Your Theme </option>
+                    {Themes.map((n)=>{
+                        return <option key={`${n}`} value={n}> {`${n}`} </option>
+                    })}
+                </select>
+            </div>
             <div>
                 {this.state.errors}
             </div>
@@ -87,6 +90,7 @@ class App extends React.Component{
             </div>
             
             <GameWord gameword={this.state.gameword} />
+            <Input word={this.state.gameword} />
 
             
             {/*<Timer />

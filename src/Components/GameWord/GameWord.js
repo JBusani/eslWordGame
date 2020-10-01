@@ -1,6 +1,6 @@
 import React from "react";
 import './GameWord.scss';
-import Input from '../Input/Input';
+
 
 
 class Gameword extends React.Component{
@@ -8,7 +8,6 @@ class Gameword extends React.Component{
         return(
            <div>
                <p className="word">{this.props.gameword}</p>
-                <Input word={this.props.gameword} />
             </div> 
         )
     }

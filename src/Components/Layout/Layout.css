@@ -26,3 +26,6 @@ body{
 .themes:hover, .themes:focus{
     background-color: gray;
 }
+.dropdown{
+    padding-bottom: 20px;
+}

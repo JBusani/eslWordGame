@@ -9,17 +9,21 @@ class Input extends React.Component{
         this.state = { 
             value: '',
             list: [],
-
             errors: []
         };
         this.handleChange = this.handleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
-
     handleChange(event){
         this.setState({value: event.target.value.toLowerCase(), errors: []});
     }
     onSubmit = (event) => {
+        if(this.props.word === ""){
+            this.setState(state => ({
+                errors: []
+            }))
+            return;
+        }
         if(event.key === 'Enter' || event.target.value === "Submit"){
             const errors = validate(this.state.value, this.props.word);
             if (errors.length > 0){
@@ -38,10 +42,9 @@ class Input extends React.Component{
     reset(w){
       let list = this.state.list;
       let word = w;
-
       while(list.length && word === ""){
           list.pop();
-        } 
+        }
       };
     
     render(){

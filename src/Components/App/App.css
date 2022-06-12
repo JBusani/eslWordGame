@@ -1,32 +1,4 @@
-html{
-    height: 100%
-}
-body{
-    height: 100%
-}
-#root{
-    height: 100%
-}
 .buttonContainer{
-    background-color: green;
-}
-.home{
-    color: white;
-    background-color: purple;
-    margin: 0;
-    padding: 100px;
-    height: 100%;
-    text-align: center;
-}
-
-.themes{
-    font-size: 1.2rem;
-    width: auto;
-    padding: 5px;
-    margin: 5px;
-    border: solid 1px white;
-    height: 50px;
-}
-.themes:hover, .themes:focus{
-    background-color: gray;
+    background-color: yellow;
+    display: inline-flex;
 }

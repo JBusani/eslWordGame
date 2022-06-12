@@ -1,5 +1,4 @@
 import React from 'react';
-import '../Layout/Layout.css'
 import Layout from '../Layout/Layout';
 import GameWord from '../GameWord/GameWord';
 import Timer from '../Timer/Timer';
@@ -8,6 +7,7 @@ import Data from '../data/data';
 import StartButton from '../Buttons/Start';
 import ResetButton from '../Buttons/Reset';
 import Input from '../Input/Input';
+import './App.css';
 
 
 class App extends React.Component{
@@ -36,17 +36,18 @@ class App extends React.Component{
     this.setState(state => ({
             theme: theme,
             errors: "",
+            gameword: "",
         }));
         console.log(`Your previous theme was ${this.state.theme}`)
    };
    gamewordSelect(){
     let theme = this.state.theme;
 
-    if(this.state.errors === "Please select a new theme" || this.state.theme === ""){
+    if(this.state.errors === "Please select a new theme" || theme === ""){
         console.log(this.state);
         return;
     };
-   
+    
     let array = this.state.themes[theme].words;
     const number = Math.floor(Math.random() * array.length);
 
@@ -75,7 +76,7 @@ class App extends React.Component{
             <p> Choose a theme. Then, Click Start. </p>
             <div className="dropdown">
                     <select id="themeDropdown" defaultValue="Select a Theme" onChange={this.themeSelect}>
-                    <option id="default" value="Select a Theme" onChange={this.themeSelect}> Select Your Theme </option>
+                    <option id="default" value="Select a Theme" > Select Your Theme </option>
                     {Themes.map((n)=>{
                         return <option key={`${n}`} value={n}> {`${n}`} </option>
                     })}
@@ -84,17 +85,14 @@ class App extends React.Component{
             <div>
                 {this.state.errors}
             </div>
-            <div>
+            <div className="buttonContainer">
                 <StartButton onClick={this.gamewordSelect}></StartButton>
                 <ResetButton onReset={this.onReset} /> 
             </div>
             
             <GameWord gameword={this.state.gameword} />
-            <Input word={this.state.gameword} />
 
             
-            {/*<Timer />
-            <Rules />*/}
          </Layout>
      )
     }   

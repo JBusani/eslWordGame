@@ -8,7 +8,7 @@ class Input extends React.Component{
         super(props);
         this.state = { 
             value: '',
-            list: [],
+            answers: [],
             errors: []
         };
         this.handleChange = this.handleChange.bind(this);
@@ -31,27 +31,29 @@ class Input extends React.Component{
                 return;
             }
             this.setState(state => {
-                const list = state.list.concat(state.value);
+                const answers = state.answers.concat(state.value);
                 return{
-                    list,
+                    answers,
                     value: '',
                 };
             });}   
 }
     
-    reset(w){
-      let list = this.state.list;
+    clearAnswers(w){
+      let answers = this.state.answers;
       let word = w;
-      while(list.length && word === ""){
-          list.pop();
+      while(answers.length && word === ""){
+          answers.pop();
         }
       };
     
     render(){
         const {errors} = this.state;
-        let AnswerList = this.state.list;
+        let AnswerList = this.state.answers;
+        let Gameword = document.getElementById("gameword");
         return(
             <div>
+                
                 <div>
                     <label> Enter words <input 
                     autoComplete="off"
@@ -68,7 +70,7 @@ class Input extends React.Component{
                     ))}
                 </div>
                 <div className="Answers">
-                    {this.reset(this.props.word)}
+                    {this.clearAnswers(this.props.word)}
                     {AnswerList.map(answer => <div className="answer" key={answer} >  {answer} </div>)}
                 </div>
                 <div>

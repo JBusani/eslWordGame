@@ -3,9 +3,8 @@ import './Rules.sass';
 
 
 
-class Rules extends React.Component{
+const Rules = () =>{
 
-    render(){
         return (
 
             <div className="ruleplay">
@@ -34,7 +33,6 @@ class Rules extends React.Component{
                 </div>
             </div>
         )
-    }
 }
 
 export default Rules;

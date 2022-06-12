@@ -12,7 +12,6 @@ const words = {
                                         "teachers",
                                         "classroom",
                                         "computers",
-                                        "board marker",
                                         "pencil case",
                                         "bookcase",
                                         "whiteboard",
@@ -45,49 +44,39 @@ const words = {
                 "Household Items": {
                         "words": [
                               "sponge",
-                              "feather duster",
                               "lampshade",
-                              "rubber gloves",
                               "clothesline",
-                              "garbage bag"
+                              "garabage",
                         ]
                 },
                 "Earth and Environment": {
                         "words": [
                                 "environment",
-                                "Electricity", 
-                                "solar panels", 
+                                "electricity", 
                                 "skylights", 
                                 "memories", 
                                 "litter", 
                                 "wildlife", 
-                                "pollution", 
-                                "Planets", 
-                                "Damage", 
-                                "plastic bag", 
-                                "recycling center", 
-                                "chemicals",
-                                "bracelets", 
-                                "wrapping paper", 
-                                "greeting cards", 
-                                "scientists" 
+                                "scientists",
+                                "international",
+                                
                         ]
                 },
                 "Reuse and Recycle": {
                         "words": [
                                 "bottle",
                                 "plastic bag",
-                                "recycling center",
+                                "recycling",
                                 "materials",
                                 "battery",
                                 "chemicals",
                                 "recycle",
-                                "reuse & return",
-                                "juice cartons",
                                 "bracelets",
-                                "greeting cards",
-                                "wrapping paper",
-                                "newspapers"
+                                "newspapers",
+                                "reuseable",
+                                "environment",
+                                "pollution", 
+
                                 ]
                         },
         }

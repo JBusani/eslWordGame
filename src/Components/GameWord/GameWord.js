@@ -2,10 +2,10 @@ import React from "react";
 import './GameWord.scss';
 import Input from '../Input/Input';
 
-function Gameword(){
+function Gameword(props){
         return(
            <div>
-               <p id="gameword" className="word">{this.props.gameword}</p>
+               <p id="gameword" className="word">{props.gameword}</p>
                <Input  word={this.props.gameword} />
             </div> 
         )

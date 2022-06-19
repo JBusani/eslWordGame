@@ -28,14 +28,18 @@ const App = () => {
     },[])
 
    function themeSelect(event){
-    console.log("Appjs please complete themeSelect Function");
-
+    console.log("previous theme: ", state.theme);
+    setState(prevState => {
+        return {
+            ...prevState,
+            theme: event.target.value
+        }
+    })
    };
    function gamewordSelect(){
     let theme = state.theme;
 
     if(state.errors === "Please select a new theme" || theme === ""){
-        console.log(state);
         return;
     };
     
@@ -43,6 +47,7 @@ const App = () => {
     const number = Math.floor(Math.random() * array.length);
 
     setState(state => ({
+        ...state,
         gameword: array[number]
     }));
    }
@@ -63,6 +68,7 @@ const App = () => {
      return(
          <Layout>
             <p> Choose a theme. Then, Click Start. </p>
+            <p> Your current theme is: {state.theme}</p>
             <div className="dropdown">
                     <select id="themeDropdown" defaultValue="Select a Theme" onChange={themeSelect}>
                     <option id="default" value="Select a Theme" > Select Your Theme </option>

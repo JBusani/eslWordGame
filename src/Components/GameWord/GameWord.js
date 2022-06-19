@@ -6,7 +6,7 @@ function Gameword(props){
         return(
            <div>
                <p id="gameword" className="word">{props.gameword}</p>
-               <Input  word={this.props.gameword} />
+               <Input  word={props.gameword} />
             </div> 
         )
 }

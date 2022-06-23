@@ -1,16 +1,14 @@
 import React from "react";
 import './GameWord.scss';
+import Input from '../Input/Input';
 
-
-
-class Gameword extends React.Component{
-    render(){
+function Gameword(props){
         return(
            <div>
-               <p className="word">{this.props.gameword}</p>
+               <p id="gameword" className="word">{props.gameword}</p>
+               <Input  word={props.gameword} />
             </div> 
         )
-    }
 }
 
 export default Gameword;

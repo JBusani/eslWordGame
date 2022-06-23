@@ -1,66 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Input.css';
 import Score from '../Scoreboard/score';
 import validate from '../../methods/validate';
 
-class Input extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = { 
+const Input = (props) => {
+    const [inputState, setinputState ] = useState(
+        {
             value: '',
-            list: [],
+            answers: [],
             errors: []
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        }
+    );
+
+    function handleChange(event){
+        setinputState({value: event.target.value.toLowerCase(), errors: []});
     }
-    handleChange(event){
-        this.setState({value: event.target.value.toLowerCase(), errors: []});
-    }
-    onSubmit = (event) => {
-        if(this.props.word === ""){
-            this.setState(state => ({
+    function onSubmit(event){
+        event.preventDefault();
+        if(props.word === ""){
+            setinputState(inputState => ({
                 errors: []
             }))
             return;
         }
         if(event.key === 'Enter' || event.target.value === "Submit"){
-            const errors = validate(this.state.value, this.props.word);
+            const errors = validate(inputState.value, props.word);
             if (errors.length > 0){
-                this.setState({errors});
+                setinputState({errors});
                 return;
             }
-            this.setState(state => {
-                const list = state.list.concat(state.value);
+            setinputState(inputState => {
+                const answers = inputState.answers.concat(inputState.value);
                 return{
-                    list,
+                    answers,
                     value: '',
                 };
             });}   
-}
+};
     
-    reset(w){
-      let list = this.state.list;
+    function clearAnswers(w){
+      let answers = inputState.answers;
       let word = w;
-      while(list.length && word === ""){
-          list.pop();
+      while(answers.length && word === ""){
+          answers.pop();
         }
       };
     
-    render(){
-        const {errors} = this.state;
-        let AnswerList = this.state.list;
+        const {errors} = inputState;
+        let AnswerList = inputState.answers;
+        let Gameword = document.getElementById("gameword");
         return(
             <div>
+                
                 <div>
                     <label> Enter words <input 
                     autoComplete="off"
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    onKeyPress={this.onSubmit}
+                    value={inputState.value}
+                    onChange={handleChange}
+                    onKeyPress={onSubmit}
                     type="text" 
                     name="answer" /> </label>
-                    <button id="myBtn" value="Submit" type="submit" onClick={this.onSubmit}> Enter </button>
+                    <button id="myBtn" value="Submit" type="submit" onClick={onSubmit}> Enter </button>
                 </div>
                 <div>
                     {errors.map(error => (
@@ -68,7 +68,7 @@ class Input extends React.Component{
                     ))}
                 </div>
                 <div className="Answers">
-                    {this.reset(this.props.word)}
+                    {clearAnswers(props.word)}
                     {AnswerList.map(answer => <div className="answer" key={answer} >  {answer} </div>)}
                 </div>
                 <div>
@@ -76,6 +76,5 @@ class Input extends React.Component{
                 </div>
             </div>
         )
-    }
 }
 export default Input;

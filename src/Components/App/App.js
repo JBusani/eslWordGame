@@ -1,5 +1,4 @@
-import React from 'react';
-import '../Layout/Layout.css'
+import React, {useEffect, useState} from 'react';
 import Layout from '../Layout/Layout';
 import GameWord from '../GameWord/GameWord';
 import Timer from '../Timer/Timer';
@@ -8,54 +7,52 @@ import Data from '../data/data';
 import StartButton from '../Buttons/Start';
 import ResetButton from '../Buttons/Reset';
 import Input from '../Input/Input';
+import './App.css';
 
 
-class App extends React.Component{
-   constructor(props){
-       super(props);
-       this.state = {
-           themes: Data.themes,
-           theme: "",
-           gameword: "",
-           errors: "",
-       }
-       this.themeSelect = this.themeSelect.bind(this);
-       this.gamewordSelect = this.gamewordSelect.bind(this);
-       this.onReset= this.onReset.bind(this);
-    }
-    componentDidMount(){
-        this.setState({
+const App = () => {
+    const [state , setState] = useState({
+        themes: Data.themes,
+        theme: "",
+        gameword: "",
+        errors: "",
+    })
+    
+    useEffect(()=> {
+        setState({
             themes: {...Data.themes},
             theme: "",
-            gameword: ""
-        })
-    };
-   themeSelect(event){
-    let theme = event.target.value;    
-
-    this.setState(state => ({
-            theme: theme,
+            gameword: "",
             errors: "",
-        }));
-        console.log(`Your previous theme was ${this.state.theme}`)
-   };
-   gamewordSelect(){
-    let theme = this.state.theme;
+        })
+    },[])
 
-    if(this.state.errors === "Please select a new theme" || this.state.theme === ""){
-        console.log(this.state);
+   function themeSelect(event){
+    console.log("previous theme: ", state.theme);
+    setState(prevState => {
+        return {
+            ...prevState,
+            theme: event.target.value
+        }
+    })
+   };
+   function gamewordSelect(){
+    let theme = state.theme;
+
+    if(state.errors === "Please select a new theme" || theme === ""){
         return;
     };
-   
-    let array = this.state.themes[theme].words;
+    
+    let array = state.themes[theme].words;
     const number = Math.floor(Math.random() * array.length);
 
-    this.setState(state => ({
+    setState(state => ({
+        ...state,
         gameword: array[number]
     }));
    }
-   onReset(){
-    this.setState(state => ({
+   function onReset(){
+    setState(state => ({
         themes: Data.themes,
         theme: "",
         gameword: '',
@@ -65,40 +62,35 @@ class App extends React.Component{
         document.getElementById("default").selected = "true";
     };
     set();
-    console.log(this.state)
+    console.log(state)
 };
-
- render(){
-    const Themes = Object.keys(this.state.themes);
+    const Themes = Object.keys(state.themes);
      return(
          <Layout>
             <p> Choose a theme. Then, Click Start. </p>
+            <p> Your current theme is: {state.theme}</p>
             <div className="dropdown">
-                    <select id="themeDropdown" defaultValue="Select a Theme" onChange={this.themeSelect}>
-                    <option id="default" value="Select a Theme" onChange={this.themeSelect}> Select Your Theme </option>
+                    <select id="themeDropdown" defaultValue="Select a Theme" onChange={themeSelect}>
+                    <option id="default" value="Select a Theme" > Select Your Theme </option>
                     {Themes.map((n)=>{
                         return <option key={`${n}`} value={n}> {`${n}`} </option>
                     })}
                 </select>
             </div>
             <div>
-                {this.state.errors}
+                {state.errors}
             </div>
-            <div>
-                <StartButton onClick={this.gamewordSelect}></StartButton>
-                <ResetButton onReset={this.onReset} /> 
+            <div className="buttonContainer">
+                <StartButton onClick={gamewordSelect}></StartButton>
+                <ResetButton onReset={onReset} /> 
             </div>
             
-            <GameWord gameword={this.state.gameword} />
-            <Input word={this.state.gameword} />
+            <GameWord gameword={state.gameword} />
 
             
-            {/*<Timer />
-            <Rules />*/}
          </Layout>
      )
-    }   
-};
+}
 
 export default App;
 

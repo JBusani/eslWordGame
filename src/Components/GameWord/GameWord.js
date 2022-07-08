@@ -1,30 +1,15 @@
 import React, {useRef} from "react";
 import './GameWord.scss';
-
+import Input from '../Input/Input';
 function Gameword(props){
-    console.log(props.start);
+    const { gameword, start } = props;
+
     const inputRef = useRef('');
-    function submitWord(event){
-        event.preventDefault();
-        console.log(inputRef);
-    } 
+    console.log(inputRef);
         return(
            <div>
-               <p id="gameword" className="word">{props.gameword}</p>
-               {props.start === true ? (
-                <div>
-                    <label> Enter words 
-                        <input 
-                            autoComplete="off"
-                            value={inputRef.value}
-                            ref={inputRef}
-                            type="text" 
-                            name="answer"
-                            disabled={!props.start}
-                            />
-                    </label>
-                    <button id="myBtn" value="Submit" type="submit" onSubmit={submitWord}> Enter </button>
-                </div>) : ''}
+               <p id="gameword" className="word">{gameword}</p>
+               {start === true ? <Input start={start} gameword={gameword} /> : ''}
             </div> 
         )
 }

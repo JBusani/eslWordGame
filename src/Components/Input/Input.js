@@ -4,7 +4,8 @@ import Score from '../Scoreboard/score';
 import validate from '../../methods/validate';
 
 const Input = (props) => {
-    const inputRef = useRef('');
+    const { start, gameword } = props;
+    console.log("game is started: ", start);
     const [inputState, setinputState ] = useState(
         {
             value: '',
@@ -12,27 +13,48 @@ const Input = (props) => {
             errors: []
         }
     );
+    const {errors} = inputState;
+    let AnswerList = inputState.answers;
+    function handleInputChange(event){
+        setinputState(prevState => ({
+            ...prevState,
+            value: event.target.value
+        }))
+    }
+    
+    //submit input to state after validation
     function onSubmit(event){
         event.preventDefault();
-        if(props.word === ""){
+        console.log("Submitted")
+        if(gameword === ""){
             setinputState(inputState => ({
+                ...inputState,
                 errors: []
             }))
             return;
         }
-        if(event.key === 'Enter' || event.target.value === "Submit"){
-            const errors = validate(inputState.value, props.word);
+        //upon enter, validate the inputed word string. if errors, return errors to the state. otherwise continue to set the inputState with updated word and clear the value
+            
+            const errors = validate(inputState.value, gameword);
+            
             if (errors.length > 0){
-                setinputState({errors});
+                setinputState(prevState => ({
+                    ...prevState,
+                    errors: errors}))
                 return;
             }
+
             setinputState(inputState => {
                 const answers = inputState.answers.concat(inputState.value);
                 return{
+                    ...inputState,
+                    errors: [],
                     answers,
                     value: '',
                 };
-            });}   
+            });
+
+            return;
 };
     
     function clearAnswers(w){
@@ -43,24 +65,22 @@ const Input = (props) => {
         }
       };
     
-        const {errors} = inputState;
-        let AnswerList = inputState.answers;
-        let Gameword = document.getElementById("gameword");
         return(
             <div>
-                
                 <div>
+                    <form onSubmit={onSubmit}>
                     <label> Enter words 
                         <input 
                             autoComplete="off"
                             value={inputState.value}
-                            onKeyPress={onSubmit}
-                            ref={inputRef}
                             type="text" 
                             name="answer"
+                            disabled={!start}
+                            onChange={handleInputChange}
                             />
                     </label>
-                    <button id="myBtn" value="Submit" type="submit" onClick={onSubmit}> Enter </button>
+                    <button type="submit" id="enterKey" > Enter </button>
+                    </form>
                 </div>
                 <div>
                     {errors.map(error => (

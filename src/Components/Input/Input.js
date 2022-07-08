@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './Input.css';
 import Score from '../Scoreboard/score';
 import validate from '../../methods/validate';
 
 const Input = (props) => {
+    const inputRef = useRef('');
     const [inputState, setinputState ] = useState(
         {
             value: '',
@@ -11,10 +12,6 @@ const Input = (props) => {
             errors: []
         }
     );
-
-    function handleChange(event){
-        setinputState({value: event.target.value.toLowerCase(), errors: []});
-    }
     function onSubmit(event){
         event.preventDefault();
         if(props.word === ""){
@@ -53,13 +50,16 @@ const Input = (props) => {
             <div>
                 
                 <div>
-                    <label> Enter words <input 
-                    autoComplete="off"
-                    value={inputState.value}
-                    onChange={handleChange}
-                    onKeyPress={onSubmit}
-                    type="text" 
-                    name="answer" /> </label>
+                    <label> Enter words 
+                        <input 
+                            autoComplete="off"
+                            value={inputState.value}
+                            onKeyPress={onSubmit}
+                            ref={inputRef}
+                            type="text" 
+                            name="answer"
+                            />
+                    </label>
                     <button id="myBtn" value="Submit" type="submit" onClick={onSubmit}> Enter </button>
                 </div>
                 <div>

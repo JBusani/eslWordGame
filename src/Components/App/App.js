@@ -6,7 +6,6 @@ import Rules from '../Rules/Rules';
 import Data from '../data/data';
 import StartButton from '../Buttons/Start';
 import ResetButton from '../Buttons/Reset';
-import Input from '../Input/Input';
 import './App.css';
 
 
@@ -16,6 +15,8 @@ const App = () => {
         theme: "",
         gameword: "",
         errors: "",
+        start: false,
+        reset: false,
     })
     
     useEffect(()=> {
@@ -24,6 +25,8 @@ const App = () => {
             theme: "",
             gameword: "",
             errors: "",
+            start: false,
+            reset:false,
         })
     },[])
 
@@ -32,13 +35,14 @@ const App = () => {
     setState(prevState => {
         return {
             ...prevState,
-            theme: event.target.value
+            theme: event.target.value,
+            start: true,
+            reset: true,
         }
     })
    };
    function gamewordSelect(){
     let theme = state.theme;
-
     if(state.errors === "Please select a new theme" || theme === ""){
         return;
     };
@@ -48,15 +52,20 @@ const App = () => {
 
     setState(state => ({
         ...state,
-        gameword: array[number]
+        errors: '',
+        gameword: array[number],
     }));
+    console.log(state.gameword)
    }
+
    function onReset(){
     setState(state => ({
         themes: Data.themes,
         theme: "",
         gameword: '',
-        errors: "Please select a new theme"
+        errors: "",
+        start: false,
+        reset: true,
     }));
     function set(){
         document.getElementById("default").selected = "true";
@@ -81,11 +90,11 @@ const App = () => {
                 {state.errors}
             </div>
             <div className="buttonContainer">
-                <StartButton onClick={gamewordSelect}></StartButton>
+                {state.start === true ? <StartButton onClick={gamewordSelect}></StartButton> : <div></div>}
                 <ResetButton onReset={onReset} /> 
             </div>
             
-            <GameWord gameword={state.gameword} />
+            <GameWord gameword={state.gameword} start={state.start} />
 
             
          </Layout>

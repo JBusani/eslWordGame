@@ -5,7 +5,6 @@ import validate from '../../methods/validate';
 
 const Input = (props) => {
     const { start, gameword } = props;
-    console.log("game is started: ", start);
     const [inputState, setinputState ] = useState(
         {
             value: '',
@@ -35,7 +34,7 @@ const Input = (props) => {
         }
         //upon enter, validate the inputed word string. if errors, return errors to the state. otherwise continue to set the inputState with updated word and clear the value
             
-            const errors = validate(inputState.value, gameword);
+            const errors = validate(inputState.value, gameword, inputState.answers);
             
             if (errors.length > 0){
                 setinputState(prevState => ({
@@ -43,7 +42,7 @@ const Input = (props) => {
                     errors: errors}))
                 return;
             }
-
+            
             setinputState(inputState => {
                 const answers = inputState.answers.concat(inputState.value);
                 return{

@@ -7,7 +7,7 @@ export default function validate(value, gameword, answers){
         const errors = [];
         const match = answers.find(answer => answer === value);
         if(match === value){
-            errors.push(`"${value.toUpperCase()}" Already Exists`)
+            errors.push(`"${value.toLowerCase()}" Already Exists`)
         }
         //check there is an input
         if (lettersArray.length === 0){
@@ -17,7 +17,7 @@ export default function validate(value, gameword, answers){
         if (lettersArray.length > gamewordArray.length){
             errors.push("Word has too many letters");
         }
-        
+         
         //check that input letters are in the gameword
         for (let x = 0; x < lettersArray.length; x++){
             const letterValue = lettersArray[x];

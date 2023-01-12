@@ -79,7 +79,7 @@ const App = () => {
             <p> Choose a theme. Then, Click Start. </p>
             <p> Your current theme is: {state.theme}</p>
             <div className="dropdown">
-                    <select id="themeDropdown" defaultValue="Select a Theme" onChange={themeSelect}>
+                    <select style={{height: "80px", padding: '10px'}} id="themeDropdown" defaultValue="Select a Theme" onChange={themeSelect}>
                     <option id="default" value="Select a Theme" > Select Your Theme </option>
                     {Themes.map((n)=>{
                         return <option key={`${n}`} value={n}> {`${n}`} </option>
@@ -95,8 +95,8 @@ const App = () => {
             </div>
             
             <GameWord gameword={state.gameword} start={state.start} />
-
             
+            <Rules />
          </Layout>
      )
 }

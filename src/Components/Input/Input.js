@@ -17,7 +17,8 @@ const Input = (props) => {
     function handleInputChange(event){
         setinputState(prevState => ({
             ...prevState,
-            value: event.target.value
+            value: event.target.value,
+            errors: []
         }))
     }
     
@@ -71,6 +72,7 @@ const Input = (props) => {
                     <label> Enter words 
                         <input 
                             autoComplete="off"
+                            autoFocus={start}
                             value={inputState.value}
                             type="text" 
                             name="answer"

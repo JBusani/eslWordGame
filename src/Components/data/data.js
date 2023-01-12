@@ -4,7 +4,7 @@ const words = {
                         "words": [
                                         "erasers",
                                         "pencils",
-                                        "rulers",
+                                        "plastic rulers",
                                         "textbook",
                                         "folders",
                                         "windows",
@@ -20,7 +20,8 @@ const words = {
                 "Tools and Building": {
                         "words": [
                                         "treehouse",
-                                        "toolboxes"
+                                        "toolboxes",
+                                        "chainsaw",
                                 ]
                         },
                 "Showtime and Theatre": {

@@ -7,10 +7,15 @@ function Gameword(props){
     const inputRef = useRef('');
     console.log(inputRef);
         return(
-           <div>
-               <p id="gameword" className="word">{gameword}</p>
-               {start === true ? <Input start={start} gameword={gameword} /> : ''}
-            </div> 
+            <>
+            {start === true ?
+                          (<div>
+                          <p id="gameword" className="word">{gameword}</p>
+                          {start === true ? <Input start={start} gameword={gameword} /> : ''}
+                       </div>) : null
+            
+        }
+            </>
         )
 }
 

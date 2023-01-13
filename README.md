@@ -5,7 +5,6 @@ FEATURES:
 1. Select Themes
 2. Keep a Score
 3. Auto Validates words
-4. 
 
 IMPROVEMENTS / BUGS:
 1. Answers don't clear when starting a new Gameword 

@@ -1,5 +1,5 @@
 import React, {useRef} from "react";
-import './GameWord.scss';
+import './GameWord.css';
 import Input from '../Input/Input';
 function Gameword(props){
     const { gameword, start } = props;

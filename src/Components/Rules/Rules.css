@@ -1,0 +1,8 @@
+.ruleplay{
+text-align: left
+    display: flex;
+
+}
+.ruleplay div{
+    padding: 10px
+}

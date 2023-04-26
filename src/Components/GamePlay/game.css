@@ -1,0 +1,22 @@
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 100px;
+}
+.userAnswer{
+    display: flex;
+    overflow-x: auto;
+    gap: .5em;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 120px;
+    border-top: 1px solid var(--font-color);
+    border-bottom: 1px solid var(--font-color);
+    letter-spacing: 1em;
+}

@@ -10,13 +10,14 @@ for (let i = data.length - 1; i > 0; i--) {
 };
 
 export const initialState = {
-    word: '',
+    word: data[0],
     score: 0,
     time: 0,
     highscore: 0,
     gameover: false,
-    gamestart: false,
-    data: data
+    gamestart: true,
+    data: data,
+    submittedAnswers: [],
 }
 //create global variables to be used as the action types
 export const SET_WORD = "SET_WORD";
@@ -25,11 +26,16 @@ export const SET_TIME = "SET_TIME";
 export const SET_HIGHSCORE = "SET_HIGHSCORE";
 export const SET_GAMEOVER = "SET_GAMEOVER";
 export const SET_GAMESTART = "SET_GAMESTART";
+export const SET_SUBMITTEDANSWERS = "SET_SUBMITTEDANSWERS";
 
 //create expor functions that take in the initial state value and includes the type already
 export const setWord = (word) => ({
     type: SET_WORD,
     payload: word
+});
+export const setSubmittedAnswers = (submittedAnswer) => ({
+    type: SET_SUBMITTEDANSWERS,
+    payload: submittedAnswer
 });
 export const setScore = (score) => ({
     type: SET_SCORE,
@@ -58,6 +64,12 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 word: action.payload
+            };
+        case SET_SUBMITTEDANSWERS:
+            return {
+                ...state,
+                submittedAnswers: [...state.submittedAnswers, action.payload],
+                score: state.score + 1
             };
         case SET_SCORE:
             return {

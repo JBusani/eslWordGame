@@ -19,7 +19,8 @@
     gap: .5em;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
     height: 120px;
     border-top: 1px solid var(--font-color);
     border-bottom: 1px solid var(--font-color);

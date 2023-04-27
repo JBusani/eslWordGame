@@ -1,12 +1,16 @@
 import React from 'react';
+//styles
 import "./Layout.css"
+
+//store and reducers
 import { useStore } from '../../Context/Store';
-import { 
-    setGamestart,
-    setWord,
-  } from '../../Reducers/reducer';
+import { setGamestart,setWord } from '../../Reducers/reducer';
+
+//components
 import Rules from '../Rules/Rules';
 import Game from '../GamePlay/game';
+import Scoreboard from '../Scoreboard/scoreboard';
+
 function Layout(props){
     //console log the store from context
     const { state: { 
@@ -29,19 +33,19 @@ function Layout(props){
 
     return (
         <div className="home" >
-                <h1 style={{textAlign: 'center'}}>Word Game</h1>
-                    {gamestart ? (
-                    <>
-                    <p style={{textAlign: 'center'}}>Game Started</p>
-                        <Game />
-                    </>
-                    ) : (
-                    <div style={{textAlign: 'center'}}>
-                      <Rules />
-                      <button onClick={startGame}>Start</button>
-                    </div>
-                    )
-                }
+            {gamestart ? (
+            <>
+              <Scoreboard />
+              <Game />
+            </>
+            ) : (
+            <div style={{textAlign: 'center'}}>
+              <h1 style={{textAlign: 'center'}}>Word Game</h1>
+              <Rules />
+              <button onClick={startGame}>Start</button>
+            </div>
+            )
+        }
                     
 
             {props.children}

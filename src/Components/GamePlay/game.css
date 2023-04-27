@@ -4,9 +4,14 @@
     gap: 1em;
     flex-wrap: wrap;
     align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
     height: 100px;
+    max-width: 250px;
+    margin: 20px auto;
+}
+.flex{
+    display: flex;
+    gap: 1em;
+    justify-content: center;
 }
 .userAnswer{
     display: flex;

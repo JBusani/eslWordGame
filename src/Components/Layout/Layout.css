@@ -4,7 +4,7 @@
          url('./fonts/LeagueSpartan-VF.woff2') format('woff2');
 }
 :root{
-    --font-color: bisque;
+    --font-color: #ffe4c4;
     --bg-color: #060a47;
     --league-spartan: 'League Spartan';
 }

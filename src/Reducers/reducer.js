@@ -28,7 +28,7 @@ export const SET_GAMEOVER = "SET_GAMEOVER";
 export const SET_GAMESTART = "SET_GAMESTART";
 export const SET_SUBMITTEDANSWERS = "SET_SUBMITTEDANSWERS";
 
-//create expor functions that take in the initial state value and includes the type already
+//create export functions that take in the initial state value and includes the type already
 export const setWord = (word) => ({
     type: SET_WORD,
     payload: word

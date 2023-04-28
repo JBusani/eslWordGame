@@ -6,9 +6,11 @@ import "./game.css";
 //create a function that takes in the props
 export default function Game(props) {
     const [error, setError ] = useState('');
+    const [showSubmitted, setShowSubmitted] = useState(false);
+
     const { state: {
         word,
-        
+        submittedAnswers
     }, dispatch } = useStore();
     //split the word into an array
     const wordArray = word.split("");
@@ -18,13 +20,12 @@ export default function Game(props) {
     //function adds the letter to the clicked letters array
     const addLetter = (index) => {
         //if error is not empty clear the error
-        if(error.length > 0){
-            setError([]);
-        };
-
+        if(error.length > 0){setError([]);};
         //setClickedLetters([...clickedLetters, {index, letter: wordArray[index]}]);
         setClickedLetters([...clickedLetters, index]);
-
+    };
+    const showSubmittedBox = (bool) => {
+        setShowSubmitted(bool);
     };
     //removes the index from the clicked letters array
     const removeLetter = (index) => {
@@ -44,7 +45,6 @@ export default function Game(props) {
 
         //create a string from clicked letters
         const answer = clickedLetters.map((letter) => wordArray[letter]).join("");
-        console.log({answer});
         dispatch(setSubmittedAnswers(answer));
         clearLetters();
     };
@@ -88,6 +88,23 @@ export default function Game(props) {
                 )
             }
             )}
+            </div>
+            <div className={`submittedBox ${showSubmitted ? 'showBox' : null}`} >
+                <div style={{background: 'var(--bg-color)', padding: '0px 20px'}}>
+
+                <svg onClick={()=>showSubmittedBox(!showSubmitted)} className={`upArrowIcon ${showSubmitted ? 'rotate' : null} `} width="50" height="50" viewBox="0 0 50 50" fill="none" >
+                    <path d="M39.5834 27.0834L25.0001 14.5834L10.4167 27.0834" stroke="#FFE4C4" stroke-width="3.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M39.5834 35.4167L25.0001 22.9167L10.4167 35.4167" stroke="#FFE4C4" stroke-width="3.125" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h5 style={{textAlign: 'center', marginTop: '0px', marginBottom: '0px'}}>Submitted Answers <br/> {`(${submittedAnswers.length})`}</h5>
+                </div>
+
+                <div className={` ${showSubmitted ? null : 'hide'} submittedAnswers`}>
+                    {submittedAnswers.map((answer, index) => {
+                        return <p key={index}>{answer}</p>
+                    })}
+                </div>
+            
             </div>
         </div>
     )

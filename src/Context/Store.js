@@ -15,7 +15,6 @@ export const useStore = () => React.useContext(Store);
 //create a provider component called storeprovider for reactjs
 export const StoreProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    console.log(state)    
     return (
         <Store.Provider value={{ state, dispatch }}>
             

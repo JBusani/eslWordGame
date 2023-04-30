@@ -18,7 +18,6 @@ export default function Game(props) {
     const wordArray = word.split("");
     //create a use state hook that holds an array that tells us which letters have been clicked
     const [clickedLetters, setClickedLetters] = useState([]);
-    console.log({clickedLetters,})
     //function adds the letter to the clicked letters array
     const addLetter = (index) => {
         //if error is not empty clear the error
@@ -65,7 +64,6 @@ export default function Game(props) {
         
         const check = await checkWord(clickedLetters.map((letter) => wordArray[letter]).join(''));
         if(check?.success === false){
-            console.log(check.success)
             setError("That's not a word");
             return;
         }

@@ -1,8 +1,9 @@
 //create a reactjs component called game
 import React, {useState} from "react";
 import { useStore } from "../../Context/Store";
-import { setSubmittedAnswers } from "../../Reducers/reducer";
+import { setSubmittedAnswers, setWord, setScore, resetSubmittedAnswers } from "../../Reducers/reducer";
 import "./game.css";
+import { checkWord } from "../../Api/getWord";
 //create a function that takes in the props
 export default function Game(props) {
     const [error, setError ] = useState('');
@@ -10,7 +11,8 @@ export default function Game(props) {
 
     const { state: {
         word,
-        submittedAnswers
+        submittedAnswers,
+        score,
     }, dispatch } = useStore();
     //split the word into an array
     const wordArray = word.split("");
@@ -24,6 +26,18 @@ export default function Game(props) {
         //setClickedLetters([...clickedLetters, {index, letter: wordArray[index]}]);
         setClickedLetters([...clickedLetters, index]);
     };
+    const newWord = () => {
+        //clear submitted answers
+        dispatch(resetSubmittedAnswers([]));
+        //clear score
+        dispatch(setScore(0));
+        //set the index to the next word
+        dispatch(setWord());
+        //clear the clicked letters array
+        clearLetters();
+        //set the showSubmitted to false
+        showSubmittedBox(false);
+    };
     const showSubmittedBox = (bool) => {
         setShowSubmitted(bool);
     };
@@ -33,20 +47,33 @@ export default function Game(props) {
     };
     //clear all clicked letters
     const clearLetters = () => {
+        setError(``);
         setClickedLetters([]);
     };
     //function that submits the answer to dispatch to the store
-    const submitAnswer = () => {
-        //check that the clicked letters array is not empty
-        if(clickedLetters.length === 0){setError("You haven't selected any letters");return;};
+    const submitAnswer = async (event) => {
+        event.preventDefault();
+        setError(``);
         //check that clicked letters joined doesn't not equal the word array joined
         const exactMatch = word === clickedLetters.map((letter) => wordArray[letter]).join('');
-        if(exactMatch){setError("Can't submit that word");return;};
+        if(exactMatch){setError("Can't submit that word");
+        return;
+        };
 
-        //create a string from clicked letters
-        const answer = clickedLetters.map((letter) => wordArray[letter]).join("");
-        dispatch(setSubmittedAnswers(answer));
-        clearLetters();
+        //check that the clicked letters array is not empty
+        if(clickedLetters.length === 0){setError("You haven't selected any letters");return;};
+        
+        const check = await checkWord(clickedLetters.map((letter) => wordArray[letter]).join(''));
+        if(check?.success === false){
+            console.log(check.success)
+            setError("That's not a word");
+            return;
+        }
+            //create a string from clicked letters
+            const answer = clickedLetters.map((letter) => wordArray[letter]).join("");
+            dispatch(setSubmittedAnswers(answer));
+            dispatch(setScore(score + 1));
+            clearLetters();
     };
 
     return (
@@ -57,7 +84,6 @@ export default function Game(props) {
                 {clickedLetters.map((letter, index) => {
                     return <button 
                     onClick={() => removeLetter(letter)}
-                    onKeyDown={console.log("key down")} 
                     key={index}
                     className="letter">
                         {wordArray[letter]}
@@ -98,8 +124,8 @@ export default function Game(props) {
                 <div style={{background: 'var(--bg-color)', padding: '0px 20px'}}>
 
                 <svg onClick={()=>showSubmittedBox(!showSubmitted)} className={`upArrowIcon ${showSubmitted ? 'rotate' : null} `} width="50" height="50" viewBox="0 0 50 50" fill="none" >
-                    <path d="M39.5834 27.0834L25.0001 14.5834L10.4167 27.0834" stroke="#FFE4C4" stroke-width="3.125" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M39.5834 35.4167L25.0001 22.9167L10.4167 35.4167" stroke="#FFE4C4" stroke-width="3.125" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M39.5834 27.0834L25.0001 14.5834L10.4167 27.0834" stroke="#FFE4C4" strokeWidth="3.125" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M39.5834 35.4167L25.0001 22.9167L10.4167 35.4167" stroke="#FFE4C4" strokeWidth="3.125" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 <h5 style={{textAlign: 'center', marginTop: '0px', marginBottom: '0px'}}>Submitted Answers <br/> {`(${submittedAnswers.length})`}</h5>
                 </div>
@@ -112,8 +138,7 @@ export default function Game(props) {
             
             </div>
             <div>
-                <p>new game</p>
-                <p>new word</p>
+                <button onClick={newWord}>new word</button>
             </div>
         </div>
     )

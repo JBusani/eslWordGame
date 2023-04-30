@@ -11,6 +11,7 @@ for (let i = data.length - 1; i > 0; i--) {
 
 export const initialState = {
     word: data[0],
+    index: 0,
     score: 0,
     time: 0,
     highscore: 0,
@@ -27,7 +28,7 @@ export const SET_HIGHSCORE = "SET_HIGHSCORE";
 export const SET_GAMEOVER = "SET_GAMEOVER";
 export const SET_GAMESTART = "SET_GAMESTART";
 export const SET_SUBMITTEDANSWERS = "SET_SUBMITTEDANSWERS";
-
+export const RESET_SUBMITTEDANSWERS = "RESET_SUBMITTEDANSWERS";
 //create export functions that take in the initial state value and includes the type already
 export const setWord = (word) => ({
     type: SET_WORD,
@@ -57,19 +58,29 @@ export const setGamestart = (gamestart) => ({
     type: SET_GAMESTART,
     payload: gamestart
 });
+export const resetSubmittedAnswers = () => ({
+    type: RESET_SUBMITTEDANSWERS,
+    payload: []
+});
+
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_WORD:
             return {
                 ...state,
-                word: action.payload
+                word: data[state.index + 1],
+                index: state.index + 1
+            };
+        case RESET_SUBMITTEDANSWERS:
+            return {
+                ...state,
+                submittedAnswers: action.payload
             };
         case SET_SUBMITTEDANSWERS:
             return {
                 ...state,
                 submittedAnswers: [...state.submittedAnswers, action.payload],
-                score: state.score + 1
             };
         case SET_SCORE:
             return {

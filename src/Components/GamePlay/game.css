@@ -11,7 +11,7 @@
     flex-wrap: wrap;
     align-items: center;
     height: 100%;
-    max-width: 250px;
+    max-width: calc(100% - 20px);
     margin: 20px auto;
 }
 .flex{
@@ -48,12 +48,16 @@
 }
 .submittedAnswers{
     overflow: auto;
+    overflow-y: hidden;
     display: flex;
     flex-wrap: wrap;
     gap: 1.5em;
     justify-content: center;
     margin-top: 1.2rem;
-    max-height: 100px;
+    max-height: 0px;
+}
+.submittedAnswers.show{
+    max-height: unset;
 }
 .submittedAnswers p{
     border: 1px solid var(--font-color);

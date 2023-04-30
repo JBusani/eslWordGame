@@ -88,6 +88,11 @@ export default function Game(props) {
                 )
             }
             )}
+                <button onClick={
+                    //remove the last letter from the clicked letters array and return the new array to clickedLetters
+                    () => setClickedLetters(clickedLetters.slice(0, -1))}>
+                        Delete
+                </button>
             </div>
             <div className={`submittedBox ${showSubmitted ? 'showBox' : null}`} >
                 <div style={{background: 'var(--bg-color)', padding: '0px 20px'}}>
@@ -99,12 +104,16 @@ export default function Game(props) {
                 <h5 style={{textAlign: 'center', marginTop: '0px', marginBottom: '0px'}}>Submitted Answers <br/> {`(${submittedAnswers.length})`}</h5>
                 </div>
 
-                <div className={` ${showSubmitted ? null : 'hide'} submittedAnswers`}>
+                <div className={` ${showSubmitted ? 'show' : 'hide'} submittedAnswers`}>
                     {submittedAnswers.map((answer, index) => {
                         return <p key={index}>{answer}</p>
                     })}
                 </div>
             
+            </div>
+            <div>
+                <p>new game</p>
+                <p>new word</p>
             </div>
         </div>
     )

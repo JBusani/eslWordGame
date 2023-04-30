@@ -15,7 +15,7 @@ export const initialState = {
     time: 0,
     highscore: 0,
     gameover: false,
-    gamestart: true,
+    gamestart: false,
     data: data,
     submittedAnswers: [],
 }

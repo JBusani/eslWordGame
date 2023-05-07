@@ -66,6 +66,9 @@
     margin: 0;
     font-size: 1.3rem;
 }
+.submitButton{
+    background-color: rgb(255, 255, 255)
+}
 .topUnset{
     top: unset;
     bottom: 0;

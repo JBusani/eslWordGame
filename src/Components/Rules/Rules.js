@@ -20,8 +20,7 @@ const Rules = () =>{
                     <ul>
                         <li> Press start. </li>
                         <li> Use the letters in the gameword to create a new word. </li>
-                        <li> To end the game: Press Reset </li>
-                        <li> Timer for a Challenge! </li>
+                        <li> To end the game: Press New Word or Refresh page </li>
                     </ul>
                 </div>
                 <div>

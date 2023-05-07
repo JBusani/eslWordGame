@@ -8,6 +8,7 @@ import { checkWord } from "../../Api/getWord";
 export default function Game(props) {
     const [error, setError ] = useState('');
     const [showSubmitted, setShowSubmitted] = useState(false);
+    const [disable, setDisable ] = useState(false);
 
     const { state: {
         word,
@@ -52,19 +53,33 @@ export default function Game(props) {
     //function that submits the answer to dispatch to the store
     const submitAnswer = async (event) => {
         event.preventDefault();
+        setDisable(true);
         setError(``);
+        //check that the clicked letters array is not empty
+        if(clickedLetters.length === 0){
+            setError("You haven't selected any letters");
+            setDisable(false);
+            return;};
+        
         //check that clicked letters joined doesn't not equal the word array joined
         const exactMatch = word === clickedLetters.map((letter) => wordArray[letter]).join('');
-        if(exactMatch){setError("Can't submit that word");
+        if(exactMatch){
+            setError("Can't submit that word");
+            setDisable(false);
         return;
         };
-
-        //check that the clicked letters array is not empty
-        if(clickedLetters.length === 0){setError("You haven't selected any letters");return;};
         
+        //check if word is already submitted
+        const alreadySubmitted = submittedAnswers.includes(clickedLetters.map((letter) => wordArray[letter]).join(''));
+        if(alreadySubmitted){
+            setError("You've already submitted that word");
+            setDisable(false);
+            return;};
+
         const check = await checkWord(clickedLetters.map((letter) => wordArray[letter]).join(''));
         if(check?.success === false){
             setError("That's not a word");
+            setDisable(false);
             return;
         }
             //create a string from clicked letters
@@ -72,6 +87,7 @@ export default function Game(props) {
             dispatch(setSubmittedAnswers(answer));
             dispatch(setScore(score + 1));
             clearLetters();
+            setDisable(false);
     };
 
     return (
@@ -80,7 +96,8 @@ export default function Game(props) {
             <h3 style={{textAlign: 'center'}}>{word.toUpperCase()}</h3>
             <div className="userAnswer">
                 {clickedLetters.map((letter, index) => {
-                    return <button 
+                    return <button
+                    disabled={disable} 
                     onClick={() => removeLetter(letter)}
                     key={index}
                     className="letter">
@@ -93,8 +110,8 @@ export default function Game(props) {
 
             <p style={{color: 'red', textAlign: 'center'}}>{error}</p>
             <div className="flex">
-              <button onClick={clearLetters} className="clearButton">Clear</button>
-              <button className="submitButton" onClick={submitAnswer}>Submit</button>
+              <button disabled={disable} onClick={clearLetters} className="clearButton">Clear</button>
+              <button disabled={disable} className="submitButton" onClick={submitAnswer}>Submit</button>
             </div>
             <div className="buttonContainer">
                 {wordArray.map((letter, index) => {
@@ -112,7 +129,9 @@ export default function Game(props) {
                 )
             }
             )}
-                <button onClick={
+                <button 
+                disabled={disable}
+                onClick={
                     //remove the last letter from the clicked letters array and return the new array to clickedLetters
                     () => setClickedLetters(clickedLetters.slice(0, -1))}>
                         Delete
@@ -136,7 +155,7 @@ export default function Game(props) {
             
             </div>
             <div>
-                <button onClick={newWord}>new word</button>
+                <button disabled={disable} onClick={newWord}>new word</button>
             </div>
         </div>
     )

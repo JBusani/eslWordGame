@@ -1,6 +1,8 @@
 //get data from data
 import data from '../Components/data/data';
 
+
+
 //shuffle the data array using the Fisher-Yates algorithm
 for (let i = data.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * i)
@@ -29,6 +31,8 @@ export const SET_GAMEOVER = "SET_GAMEOVER";
 export const SET_GAMESTART = "SET_GAMESTART";
 export const SET_SUBMITTEDANSWERS = "SET_SUBMITTEDANSWERS";
 export const RESET_SUBMITTEDANSWERS = "RESET_SUBMITTEDANSWERS";
+
+
 //create export functions that take in the initial state value and includes the type already
 export const setWord = (word) => ({
     type: SET_WORD,
@@ -69,7 +73,7 @@ export const reducer = (state = initialState, action) => {
         case SET_WORD:
             return {
                 ...state,
-                word: data[state.index + 1],
+                word: "pollution",
                 index: state.index + 1
             };
         case RESET_SUBMITTEDANSWERS:

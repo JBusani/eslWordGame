@@ -4,17 +4,22 @@ import { useStore } from "../../Context/Store";
 import { setSubmittedAnswers, setWord, setScore, resetSubmittedAnswers } from "../../Reducers/reducer";
 import "./game.css";
 import { checkWord } from "../../Api/getWord";
-//create a function that takes in the props
+import { checkCommonAnswers } from "../data/answers";
+
 export default function Game(props) {
+    
     const [error, setError ] = useState('');
     const [showSubmitted, setShowSubmitted] = useState(false);
     const [disable, setDisable ] = useState(false);
-
+    
     const { state: {
         word,
         submittedAnswers,
         score,
     }, dispatch } = useStore();
+    
+    
+
     //split the word into an array
     const wordArray = word.split("");
     //create a use state hook that holds an array that tells us which letters have been clicked
@@ -55,6 +60,7 @@ export default function Game(props) {
         event.preventDefault();
         setDisable(true);
         setError(``);
+        const answer = clickedLetters.map((letter) => wordArray[letter]).join("");
         //check that the clicked letters array is not empty
         if(clickedLetters.length === 0){
             setError("You haven't selected any letters");
@@ -75,15 +81,22 @@ export default function Game(props) {
             setError("You've already submitted that word");
             setDisable(false);
             return;};
-
+        const isCommonAnswer = checkCommonAnswers(word, answer);
+        console.log(isCommonAnswer, 'isCommonAnswer')
+        if(isCommonAnswer){
+            dispatch(setSubmittedAnswers(answer));
+            dispatch(setScore(score + 1));
+            clearLetters();
+            setDisable(false);
+            console.log(isCommonAnswer, 'isCommonAnswer')
+            return;
+        };
         const check = await checkWord(clickedLetters.map((letter) => wordArray[letter]).join(''));
         if(check?.success === false){
             setError("That's not a word");
             setDisable(false);
             return;
         }
-            //create a string from clicked letters
-            const answer = clickedLetters.map((letter) => wordArray[letter]).join("");
             dispatch(setSubmittedAnswers(answer));
             dispatch(setScore(score + 1));
             clearLetters();

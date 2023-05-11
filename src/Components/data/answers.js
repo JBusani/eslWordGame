@@ -231,6 +231,6 @@ export function checkCommonAnswers(gameword, answer){
     //if the answer is in the object, return true
     //if the answer is not in the object, return false
     let answerArray = commonAnswers[gameword];
-    return answerArray.includes(answer)
-
+    const isCommon = answerArray.includes(answer)
+    return isCommon
 };

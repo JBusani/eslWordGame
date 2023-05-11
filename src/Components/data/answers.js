@@ -27,7 +27,6 @@ export const commonAnswers = {
       "dong",
       "done",
       "lodge",
-      "logon",
       "ogled",
       "olden",
       "endow",

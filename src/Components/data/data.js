@@ -4,7 +4,6 @@ const words = [
 "textbook",
 "folders",
 "windows",
-"bookcase",
 "teachers",
 "classroom",
 "computers",

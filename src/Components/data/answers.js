@@ -1,4 +1,10 @@
 export const commonAnswers = {
+    "basketball": ["ball", "ask", "bat", "cab", "lab", "sack", "all", "call", "lack", "tall", "task", "blast", "stalk", "basket"],
+  "celebration": ["able", "ace", "ale", "ban", "can", "lab", "ice", "cab", "lion", "lie", "nice", "once", "cone", "base", "case", "alone", "sail", "slice", "sale", "rice", "real", "rise", "learn", "iron", "sonar", "noble", "noel", "lobes", "lesions", "rascal", "reason", "carol", "cobble", "barrel", "brace", "balance", "bracelet"],
+  "dragonfly": ["and", "any", "day", "dry", "fad", "fan", "far", "fly", "fog", "fry", "lad", "lag", "log", "nag", "old", "ran", "rag", "ray", "yon", "yard", "glad", "gold", "goal", "loan", "long", "land", "randy", "dragon", "drag", "grad", "fang", "foal", "flag", "fond", "fray", "flay", "oral", "lady", "yarn", "flan", "flog", "dang", "dory", "lard", "load", "loaf", "lord", "yoda"],
+  "friendship": ["end", "hen", "her", "hip", "his", "nip", "pen", "per", "rip", "sin", "sip", "sir", "hipster", "friend", "fire", "fern", "fresh", "fines", "fries", "infer", "hires", "shine", "ripen", "sniper", "spender", "spire", "shred", "spied"],
+  "helicopter": ["cop", "her", "hop", "hoe", "ore", "per", "pro", "role", "rope", "cope", "pore", "lope", "lore", "crop", "help", "hole", "lore", "roe", "pole", "core", "rope", "choir", "chirp", "clop", "clip", "col", "epic", "heir", "hire", "loch", "lice", "lire", "rice", "rich", "rile", "ripe", "echo", "helo", "hope", "leer", "eel", "the", "hot", "plot", "pet", "let", "lot", "tell", "top", "tole", "tore"],
+  "important": ["aim", "air", "art", "gin", "gap", "ion", "inn", "man", "map", "mat", "nap", "nip", "nit", "not", "oar", "pan", "par", "pit", "pot", "rap", "rim", "rip", "tap", "tin", "tip", "ton", "top", "trap", "part", "paint", "pair", "port", "print", "prima", "imp", "mag", "main", "minor", "matin", "morn", "point"],
     "knowledge" : [
       "den",
       "doe",
@@ -42,6 +48,7 @@ export const commonAnswers = {
       "wold"
     ],
     "meditation" : [
+        "it",
       "aid",
       "aim",
       "and",
@@ -184,7 +191,6 @@ export const commonAnswers = {
         "sic",
 ],
 "textbook" : ["bet", "boo", "bot", "box", "toe", "too", "took", "tool", "text", "book", "tot", "tet", "ebb", "ex", "oke"],
-"bookcase" : [],
 "teachers"  : [],
 "classroom" : [],
 "computers" : [],
@@ -203,8 +209,8 @@ export const commonAnswers = {
 "lampshade" : [],
 "clothesline" : [],
 "garabage" : [],
-"environment" : [],
-"electricity" : [],  
+"environment" : ["emote", "enorm", "enter", "enviro", "event", "evener", "invert", "meteor", "mentor", "merino", "meter", "mine", "mint", "mire", "mite", "more", "morn", "mort", "move", "movie", "neem", "nene", "neon", "net", "neve", "nine", "nite", "nome", "none", "noon", "nor", "norm", "note", "omen", "omit", "onion", "oven", "over", "rein", "rent", "retro", "revet", "rime", "riot", "rite", "riven", "rivet", "rove", "teen", "tenon", "tenor", "term", "tern", "tier", "time", "tine", "tire", "tome", "tone", "toon", "tore", "torn", "tree", "trim", "trio", "trove", "veer", "vein", "vent", "vert", "veto", "vine", "vote"],
+"electricity" : ['eye', 'let', 'lie', 'lit', 'lye', 'eel', 'ice', 'ire', 'lee', 'lei', 'let', 'ley', 'lie', 'lit', 'lye', 'rec', 'ree', 'rei', 'ret', 'rye', 'tee', 'tel', 'tic', 'tie', 'til', 'yet', 'cite', 'city', 'clit', 'cree', 'crit', 'eel', 'eyer', 'eyer', 'leer', 'lice', 'lier', 'lire', 'lite', 'lyre', 'reel', 'rely', 'rete', 'rice', 'riel', 'rile', 'rite', 'tier', 'tile', 'tire', 'tree', 'tyee', 'tyer', 'tyre', 'cere', 'ceil', 'celt', 'cete', 'cire', 'cite', 'city', 'clee', 'clit', 'crit', 'eel', 'eyer', 'eyer', 'iter', 'leer', 'lice', 'lier', 'lire', 'lite', 'lyre', 'recit', 'recti', 'relic', 'retie', 'terce', 'tiler', 'trace', 'trail', 'trice', 'eyre', 'lecite', 'receipt', 'reticle', 'tiercel'],  
 "skylights" : [], 
 "memories" : [], 
 "wildlife" : [], 
@@ -216,8 +222,8 @@ export const commonAnswers = {
 "chemicals" : [],
 "bracelets" : [],
 "newspapers" : [],
-"reuseable" : [],
-"pollution" : [],
+"reusable" : [  "able",  "abuse",  "alb",  "ale",  "are",  "ars",  "as",  "ba",  "bal",  "bale",  "bar",  "bare",  "bars",  "bas",  "be",  "bear",  "beau",  "blae",  "blare",  "blue",  "bluer",  "bra",  "brae",  "bras",  "bur",  "bura",  "burs",  "bus",  "ear",  "ears",  "eau",  "el",  "er",  "era",  "eras",  "ers",  "es",  "la",  "lab",  "labs",  "lar",  "lare",  "lares",  "lars",  "las",  "lase",  "lea",  "lear",  "leas",  "leu",  "lube",  "lues",  "lure",  "lurer",  "ras",  "re",  "real",  "reals",  "rear",  "rears",  "reb",  "rebs",  "res",  "rub",  "rube",  "rubes",  "rubs",  "rue",  "rues",  "rule",  "ruler",  "rules",  "ruse",  "sab",  "sable",  "safer",  "sale",  "saree",  "saul",  "sea",  "seal",  "sear",  "seer",  "sel",  "ser",  "sera",  "sere",  "serer",  "slab",  "slue",  "slur",  "sub",  "suba",  "sue",  "sure",  "uraeus",  "urb",  "urbs",  "urea",  "ureal",  "ureas",  "ursa",  "us"],
+"pollution" : [  'in',    'it',    'lip',   'lit',    'loo',  'loop',  'loot',  'lot',   'lotion', 'lout',  'nil',   'nip',   'nit',   'no',     'not',  'nut',   'oil',   'on',    'onto',   'oot',  'opt',   'ou',    'out',   'pi',     'pin',  'pit',   'plot',  'poi',   'pol',    'poll',  'polo',  'poo',   'pool',  'pot',    'pout',  'til',   'tin',   'tip',   'to',     'toil',  'ton',   'tool',  'top',   'tun',    'unit',  'unto',  'up',    'upon'],
 }
 
 export function checkCommonAnswers(gameword, answer){

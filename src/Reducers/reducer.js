@@ -73,7 +73,7 @@ export const reducer = (state = initialState, action) => {
         case SET_WORD:
             return {
                 ...state,
-                word: "pollution",
+                word: data[state.index + 1],
                 index: state.index + 1
             };
         case RESET_SUBMITTEDANSWERS:

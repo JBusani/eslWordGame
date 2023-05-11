@@ -128,10 +128,10 @@ export default function Game(props) {
 
             <p style={{color: 'red', textAlign: 'center'}}>{error}</p>
             <div className="flex">
-              <button disabled={disable} onClick={clearLetters} className="clearButton">Clear</button>
-              <button disabled={disable} className="submitButton" onClick={submitAnswer}>Submit</button>
+              <button disabled={disable} onClick={clearLetters} className={`clearButton ${disable ? 'hide' : ''}`}>Clear</button>
+              <button disabled={disable} className={`submitButton ${disable ? 'hide' : ''}`} onClick={submitAnswer}>Submit</button>
             </div>
-            <div className="buttonContainer">
+            <div className={`buttonContainer ${disable ? 'hide' : ''}`}>
                 {wordArray.map((letter, index) => {
                     
                     const clicked = clickedLetters.includes(index);    

@@ -26,7 +26,8 @@ const Rules = () =>{
                 <div>
                     <h1> SCORING </h1>
                     <ul>
-                        <li> Each word = 1 point </li>
+                        <li> Each word = 1 point per letter </li>
+                        <li> Bonus = 5 points over four letters OR 10 points over six lettters</li>
                         <li> Words will only count once. Example: "Game" and "Game" = 1 point. </li> 
                     </ul>
                 </div>

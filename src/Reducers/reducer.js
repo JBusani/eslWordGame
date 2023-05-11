@@ -1,25 +1,25 @@
 //get data from data
-import data from '../Components/data/data';
+import {gamewords} from '../Components/data/data';
 
 
 
 //shuffle the data array using the Fisher-Yates algorithm
-for (let i = data.length - 1; i > 0; i--) {
+for (let i = gamewords.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * i)
-    const temp = data[i]
-    data[i] = data[j]
-    data[j] = temp
+    const temp = gamewords[i]
+    gamewords[i] = gamewords[j]
+    gamewords[j] = temp
 };
 
 export const initialState = {
-    word: data[0],
+    word: gamewords[0],
     index: 0,
     score: 0,
     time: 0,
     highscore: 0,
     gameover: false,
     gamestart: false,
-    data: data,
+    data: gamewords,
     submittedAnswers: [],
 }
 //create global variables to be used as the action types
@@ -73,7 +73,7 @@ export const reducer = (state = initialState, action) => {
         case SET_WORD:
             return {
                 ...state,
-                word: data[state.index + 1],
+                word: gamewords[state.index + 1],
                 index: state.index + 1
             };
         case RESET_SUBMITTEDANSWERS:

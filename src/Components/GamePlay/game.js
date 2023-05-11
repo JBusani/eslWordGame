@@ -4,7 +4,7 @@ import { useStore } from "../../Context/Store";
 import { setSubmittedAnswers, setWord, setScore, resetSubmittedAnswers } from "../../Reducers/reducer";
 import "./game.css";
 import { checkWord } from "../../Api/getWord";
-import { checkCommonAnswers } from "../data/answers";
+import { checkCommonAnswers } from "../data/data";
 
 export default function Game(props) {
     
@@ -58,9 +58,12 @@ export default function Game(props) {
     //function that submits the answer to dispatch to the store
     const submitAnswer = async (event) => {
         event.preventDefault();
+        const answer = clickedLetters.map((letter) => wordArray[letter]).join("");
+        const bonus = answer.length > 4 ? 5 : answer.length >6 ? 10 : 0 ;
+        const points = answer.length + bonus;
+        
         setDisable(true);
         setError(``);
-        const answer = clickedLetters.map((letter) => wordArray[letter]).join("");
         //check that the clicked letters array is not empty
         if(clickedLetters.length === 0){
             setError("You haven't selected any letters");
@@ -68,7 +71,7 @@ export default function Game(props) {
             return;};
         
         //check that clicked letters joined doesn't not equal the word array joined
-        const exactMatch = word === clickedLetters.map((letter) => wordArray[letter]).join('');
+        const exactMatch = word === answer;
         if(exactMatch){
             setError("Can't submit that word");
             setDisable(false);
@@ -76,7 +79,7 @@ export default function Game(props) {
         };
         
         //check if word is already submitted
-        const alreadySubmitted = submittedAnswers.includes(clickedLetters.map((letter) => wordArray[letter]).join(''));
+        const alreadySubmitted = submittedAnswers.includes(answer);
         if(alreadySubmitted){
             setError("You've already submitted that word");
             setDisable(false);
@@ -85,20 +88,20 @@ export default function Game(props) {
         console.log(isCommonAnswer, 'isCommonAnswer')
         if(isCommonAnswer){
             dispatch(setSubmittedAnswers(answer));
-            dispatch(setScore(score + 1));
+            dispatch(setScore(score + points));
             clearLetters();
             setDisable(false);
             console.log(isCommonAnswer, 'isCommonAnswer')
             return;
         };
-        const check = await checkWord(clickedLetters.map((letter) => wordArray[letter]).join(''));
+        const check = await checkWord(answer);
         if(check?.success === false){
-            setError("That's not a word");
+            setError(`${answer} is not a known word`);
             setDisable(false);
             return;
         }
             dispatch(setSubmittedAnswers(answer));
-            dispatch(setScore(score + 1));
+            dispatch(setScore(score + points));
             clearLetters();
             setDisable(false);
     };
@@ -107,14 +110,16 @@ export default function Game(props) {
         <div>
 
             <h3 style={{textAlign: 'center'}}>{word.toUpperCase()}</h3>
-            <div className="userAnswer">
+            <div className={`userAnswer ${disable ? 'submit' : ''}`}    >
                 {clickedLetters.map((letter, index) => {
                     return <button
                     disabled={disable} 
                     onClick={() => removeLetter(letter)}
                     key={index}
+                    style={disable ? { borderRadius: '0px'} : null}
                     className="letter">
                         {wordArray[letter]}
+                    
                     </button>
                     
                     }
@@ -128,7 +133,7 @@ export default function Game(props) {
             </div>
             <div className="buttonContainer">
                 {wordArray.map((letter, index) => {
-                    //return a button that size transitions from small to large
+                    
                     const clicked = clickedLetters.includes(index);    
                     return (
                         <button 
@@ -168,7 +173,7 @@ export default function Game(props) {
             
             </div>
             <div>
-                <button disabled={disable} onClick={newWord}>new word</button>
+                <button onClick={newWord}>new word</button>
             </div>
         </div>
     )

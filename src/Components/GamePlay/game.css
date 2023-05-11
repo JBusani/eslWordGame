@@ -22,19 +22,6 @@
 .hide{
     display: none;
 }
-.userAnswer{
-    display: flex;
-    overflow-x: auto;
-    gap: .5em;
-    align-items: center;
-    justify-content: center;
-    max-width: 500px;
-    margin: 20px auto;
-    height: 120px;
-    border-top: 1px solid var(--font-color);
-    border-bottom: 1px solid var(--font-color);
-    letter-spacing: 1em;
-}
 .submittedBox{
     position: absolute;
     bottom: 0;
@@ -80,4 +67,22 @@
 }
 .rotate{
     transform: rotate(180deg);
+}
+.userAnswer{
+
+        display: flex;
+        overflow-x: auto;
+        gap: .5em;
+        align-items: center;
+        justify-content: center;
+        max-width: 500px;
+        margin: 20px auto;
+        height: 120px;
+        border-top: 1px solid var(--font-color);
+        border-bottom: 1px solid var(--font-color);
+        letter-spacing: 1em;
+        transition: all 0.3s ease-in-out;
+}
+.userAnswer.submit{
+    gap: 0px;
 }

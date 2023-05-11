@@ -49,6 +49,16 @@ const words = [
 "reuseable",
 "environment",
 "pollution", 
+"basketball",
+"celebration",
+"dragonfly",
+"friendship",
+"helicopter",
+"important",
+"knowledge",
+"meditation",
+"notebook",
+"watermelon",
 ];
 
 export default words;

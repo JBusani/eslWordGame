@@ -20,14 +20,14 @@ const Rules = () =>{
                     <ul>
                         <li> Press start. </li>
                         <li> Use the letters in the gameword to create a new word. </li>
-                        <li> To end the game: Press Reset </li>
-                        <li> Timer for a Challenge! </li>
+                        <li> To end the game: Press New Word or Refresh page </li>
                     </ul>
                 </div>
                 <div>
                     <h1> SCORING </h1>
                     <ul>
-                        <li> Each word = 1 point </li>
+                        <li> Each word = 1 point per letter </li>
+                        <li> Bonus = 5 points over four letters OR 10 points over six lettters</li>
                         <li> Words will only count once. Example: "Game" and "Game" = 1 point. </li> 
                     </ul>
                 </div>

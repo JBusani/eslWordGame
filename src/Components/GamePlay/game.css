@@ -1,0 +1,88 @@
+.showBox{
+    height: 99% !important;
+    top: 0;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,.5);
+}
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100%;
+    max-width: calc(100% - 20px);
+    margin: 20px auto;
+}
+.flex{
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+}
+.hide{
+    display: none;
+}
+.submittedBox{
+    position: absolute;
+    bottom: 0;
+    max-width: 500px;
+    width: 100%;
+    height: 100px;
+    border-top: 1px var(--font-color) solid;
+    transform: translate(-50%, 0);
+    left: 50%;
+    transition: all .5s ease-in-out;
+}
+.submittedAnswers{
+    overflow: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: center;
+    margin-top: 1.2rem;
+    max-height: 0px;
+}
+.submittedAnswers.show{
+    max-height: unset;
+}
+.submittedAnswers p{
+    border: 1px solid var(--font-color);
+    padding: .5em;
+    border-radius: 5px;
+    margin: 0;
+    font-size: 1.3rem;
+}
+.submitButton{
+    background-color: rgb(255, 255, 255)
+}
+.topUnset{
+    top: unset;
+    bottom: 0;
+}
+.upArrowIcon{
+    margin: 0px auto;
+    width: 100%;
+    transition: all .3s ease-in-out;
+}
+.rotate{
+    transform: rotate(180deg);
+}
+.userAnswer{
+
+        display: flex;
+        overflow-x: auto;
+        gap: .5em;
+        align-items: center;
+        justify-content: center;
+        max-width: 500px;
+        margin: 20px auto;
+        height: 120px;
+        border-top: 1px solid var(--font-color);
+        border-bottom: 1px solid var(--font-color);
+        letter-spacing: 1em;
+        transition: all 0.3s ease-in-out;
+}
+.userAnswer.submit{
+    gap: 0px;
+}

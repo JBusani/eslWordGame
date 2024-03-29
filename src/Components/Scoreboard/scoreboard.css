@@ -1,0 +1,28 @@
+.scoreboard{
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    align-items: center;
+    margin: 0px auto;
+    padding: 0px 15px;
+    height: 50px;
+    /* animate only once*/
+}
+/* shrink animation*/
+.score{
+    animation: shrink 0.5s ease-in-out 1;
+}
+@keyframes shrink {
+    0% {
+        transform: inherit;
+    }
+    50% {
+        transform: scale(3);
+    }
+    100% {
+        transform: inherit;
+    }
+}
+h6{
+    font-weight: 400;
+}

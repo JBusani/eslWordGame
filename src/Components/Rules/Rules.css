@@ -1,7 +1,7 @@
 .ruleplay{
-text-align: left;
-    display: flex;
-
+    text-align: left;
+    width: fit-content;
+    margin: 0px auto;
 }
 .ruleplay div{
     padding: 10px
